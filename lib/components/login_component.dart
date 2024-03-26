@@ -131,7 +131,9 @@ class _FormLoginState extends State<FormLogin> {
 }
 
 class header extends StatelessWidget {
-  const header({super.key});
+  final String judul;
+
+  const header({super.key, required this.judul});
 
   @override
   Widget build(BuildContext context) {
@@ -141,10 +143,10 @@ class header extends StatelessWidget {
           Container(
             height: 200,
             color: myColors().primaryColor,
-            child: const Center(
+            child: Center(
               child: Text(
-                'Login',
-                style: TextStyle(
+                judul,
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 25),
@@ -157,8 +159,8 @@ class header extends StatelessWidget {
   }
 }
 
-class footer extends StatelessWidget {
-  const footer({super.key});
+class footerLogin extends StatelessWidget {
+  const footerLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -168,10 +170,10 @@ class footer extends StatelessWidget {
         const Text('Belum memiliki akun? Silahkan '),
         GestureDetector(
           onTap: () {
-            print('Text daftar di klik');
+            Navigator.pushReplacementNamed(context, '/register');
           },
           child: Text(
-            'Daftar',
+            'Register',
             style: TextStyle(
                 color: myColors().primaryColor, fontWeight: FontWeight.bold),
           ),

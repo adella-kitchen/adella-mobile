@@ -1,4 +1,5 @@
 import 'package:adella_kitchen/components/login_component.dart';
+import 'package:adella_kitchen/layout/card_container_login.dart';
 import 'package:adella_kitchen/theme/myColors.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +17,12 @@ class _LoginState extends State<Login> {
       backgroundColor: myColors().primaryColor,
       body: const Column(
         children: [
-          header(),
+          header(judul: 'Login'),
           Expanded(
-            child: cardContainer(),
+            child: CardCotainer(
+              mainContent: MainContent(),
+              judul: 'Selamat Datang Kembali',
+            ),
           ),
         ],
       ),
@@ -26,44 +30,8 @@ class _LoginState extends State<Login> {
   }
 }
 
-class cardContainer extends StatelessWidget {
-  const cardContainer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.zero,
-      elevation: 4,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(32),
-        topRight: Radius.circular(32),
-      )),
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(top: 40),
-                child: const Text(
-                  'Selamat Datang Kembali',
-                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
-                ),
-              ),
-              const mainContent(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class mainContent extends StatelessWidget {
-  const mainContent({super.key});
+class MainContent extends StatelessWidget {
+  const MainContent({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -79,7 +47,8 @@ class mainContent extends StatelessWidget {
           ),
           const FormLogin(),
           Container(
-              margin: const EdgeInsets.only(top: 10), child: const footer())
+              margin: const EdgeInsets.only(top: 10),
+              child: const footerLogin())
         ],
       ),
     );
