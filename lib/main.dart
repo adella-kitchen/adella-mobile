@@ -3,6 +3,7 @@ import 'package:adella_kitchen/view/register.dart';
 import 'package:adella_kitchen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:adella_kitchen/theme/app_theme.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +14,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Adella Kitchen',
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
         // Rute untuk halaman register
         '/register': (context) => const Register(),
       },
-      initialRoute: '/login',
+      initialRoute: '/',
     );
   }
 }
