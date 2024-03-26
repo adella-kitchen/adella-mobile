@@ -9,13 +9,14 @@ class AppTheme {
       useMaterial3: true,
       // Konfigurasi font default
       textTheme: const TextTheme(
-        titleLarge: TextStyle(fontFamily: 'Poppins'), 
-        bodyLarge:
-            TextStyle(fontFamily: 'Poppins'), 
-        bodyMedium: TextStyle(
-            fontFamily:
-                'Poppins'), 
+        titleLarge: TextStyle(fontFamily: 'Poppins'),
+        bodyLarge: TextStyle(fontFamily: 'Poppins'),
+        bodyMedium: TextStyle(fontFamily: 'Poppins'),
       ),
     );
   }
+}
+
+class fontSize {
+  final double regular = 15;
 }
