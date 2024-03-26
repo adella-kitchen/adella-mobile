@@ -1,7 +1,7 @@
 import 'package:adella_kitchen/components/login_component.dart';
 import 'package:adella_kitchen/components/register_component.dart';
 import 'package:adella_kitchen/layout/card_container_login.dart';
-import 'package:adella_kitchen/theme/myColors.dart';
+import 'package:adella_kitchen/theme/MyColors.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -15,7 +15,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: myColors().primaryColor,
+      backgroundColor: MyColors().primaryColor,
       body: const Column(
         children: [
           header(judul: 'Register'),

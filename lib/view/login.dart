@@ -1,6 +1,6 @@
 import 'package:adella_kitchen/components/login_component.dart';
 import 'package:adella_kitchen/layout/card_container_login.dart';
-import 'package:adella_kitchen/theme/myColors.dart';
+import 'package:adella_kitchen/theme/MyColors.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -14,7 +14,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: myColors().primaryColor,
+      backgroundColor: MyColors().primaryColor,
       body: const Column(
         children: [
           header(judul: 'Login'),

@@ -1,6 +1,8 @@
+import 'package:adella_kitchen/components/partials/single_widget.dart';
+import 'package:adella_kitchen/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../theme/myColors.dart';
+import '../theme/MyColors.dart';
 
 class FormLogin extends StatefulWidget {
   const FormLogin({Key? key}) : super(key: key);
@@ -21,37 +23,7 @@ class _FormLoginState extends State<FormLogin> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 5),
-            child: const Text(
-              'Email',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-            ),
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Masukkan Email',
-              hintStyle: TextStyle(color: Colors.grey),
-              border: OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black),
-              ),
-            ),
-            cursorColor: Colors.black,
-            validator: (value) {
-              if (value!.trim().isEmpty) {
-                return 'Email required';
-              } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                  .hasMatch(value)) {
-                return 'Please enter a valid email';
-              }
-              return null;
-            },
-            keyboardType: TextInputType.emailAddress,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
+          const TfEmail(),
           Container(
             margin: const EdgeInsets.only(bottom: 5),
             child: const Text(
@@ -59,54 +31,58 @@ class _FormLoginState extends State<FormLogin> {
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
           ),
-          TextFormField(
-            obscureText: _obscureText,
-            decoration: InputDecoration(
-              hintText: 'Masukkan Password',
-              hintStyle: const TextStyle(color: Colors.grey),
-              border: const OutlineInputBorder(),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black),
-              ),
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-                icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.grey,
+          SizedBox(
+            height: 80,
+            child: TextFormField(
+              style: TextStyle(fontSize: fontSize().regular),
+              obscureText: _obscureText,
+              decoration: InputDecoration(
+                hintText: 'Masukkan Password',
+                hintStyle: const TextStyle(color: Colors.grey),
+                border: const OutlineInputBorder(),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
+              cursorColor: Colors.black,
+              validator: (value) {
+                if (value!.trim().isEmpty) {
+                  return 'Password required';
+                }
+                if (value.length < 8) {
+                  return 'Password needs to be at least 8 characters';
+                }
+                return null;
+              },
             ),
-            cursorColor: Colors.black,
-            validator: (value) {
-              if (value!.trim().isEmpty) {
-                return 'Password required';
-              }
-              if (value.length < 8) {
-                return 'Password needs to be at least 8 characters';
-              }
-              return null;
-            },
           ),
           Container(
-            margin: const EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 15),
             child: SizedBox(
               height: 50,
               child: ElevatedButton(
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0),
+                      borderRadius: BorderRadius.circular(6),
                     ),
                   ),
                   minimumSize: MaterialStateProperty.all(
                     const Size(double.infinity, 50),
                   ),
                   backgroundColor: MaterialStateProperty.all(
-                    myColors().primaryColor,
+                    MyColors().primaryColor,
                   ),
                 ),
                 onPressed: () {
@@ -142,7 +118,7 @@ class header extends StatelessWidget {
         children: [
           Container(
             height: 200,
-            color: myColors().primaryColor,
+            color: MyColors().primaryColor,
             child: Center(
               child: Text(
                 judul,
@@ -175,7 +151,7 @@ class footerLogin extends StatelessWidget {
           child: Text(
             'Register',
             style: TextStyle(
-                color: myColors().primaryColor, fontWeight: FontWeight.bold),
+                color: MyColors().primaryColor, fontWeight: FontWeight.bold),
           ),
         )
       ],
