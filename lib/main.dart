@@ -1,4 +1,6 @@
 import 'package:adella_kitchen/view/login.dart';
+import 'package:adella_kitchen/view/register.dart';
+import 'package:adella_kitchen/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:adella_kitchen/theme/app_theme.dart';
 
@@ -15,7 +17,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Adella Kitchen',
       theme: AppTheme.getAppTheme(),
-      home: const Login(),
+      routes: {
+        // Rute awal, menampilkan SplashScreen
+        '/': (context) => const SplashScreen(),
+        // Rute untuk halaman login
+        '/login': (context) => const Login(),
+        // Rute untuk halaman register
+        '/register': (context) => const Register(),
+      },
+      initialRoute: '/login',
     );
   }
 }
