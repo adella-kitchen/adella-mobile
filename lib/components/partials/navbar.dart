@@ -1,7 +1,4 @@
 import 'package:adella_kitchen/theme/myColors.dart';
-import 'package:adella_kitchen/view/home.dart';
-import 'package:adella_kitchen/view/login.dart';
-import 'package:adella_kitchen/view/register.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 

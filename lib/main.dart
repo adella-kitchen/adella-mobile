@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const Home(),
         '/nav': (context) => const Navbar(),
       },
-      initialRoute: '/nav',
+      initialRoute: '/',
     );
   }
 }
