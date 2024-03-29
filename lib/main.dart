@@ -1,3 +1,5 @@
+import 'package:adella_kitchen/components/partials/navbar.dart';
+import 'package:adella_kitchen/view/home.dart';
 import 'package:adella_kitchen/view/login.dart';
 import 'package:adella_kitchen/view/register.dart';
 import 'package:adella_kitchen/view/splash_screen.dart';
@@ -10,7 +12,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +24,13 @@ class MyApp extends StatelessWidget {
       title: 'Adella Kitchen',
       theme: AppTheme.getAppTheme(),
       routes: {
-        // Rute awal, menampilkan SplashScreen
         '/': (context) => const SplashScreen(),
-        // Rute untuk halaman login
         '/login': (context) => const Login(),
-        // Rute untuk halaman register
         '/register': (context) => const Register(),
+        '/home': (context) => const Home(),
+        '/nav': (context) => const Navbar(),
       },
-      initialRoute: '/',
+      initialRoute: '/nav',
     );
   }
 }
