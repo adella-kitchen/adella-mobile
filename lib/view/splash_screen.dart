@@ -12,15 +12,14 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: MyColors().primaryColor,
       body: AnimatedSplashScreen(
-      splash: Transform.scale(
-      scale: 2.5, child: Image.asset('assets/img/testimg.png')),
-      duration: 1500,
-      splashTransition: SplashTransition.scaleTransition,
-      pageTransitionType: PageTransitionType.bottomToTop,
-      backgroundColor: MyColors().primaryColor,
-      nextScreen: const Navbar(),        
+        splash: Transform.scale(
+            scale: 2.5, child: Image.asset('assets/img/testimg.png')),
+        duration: 1500,
+        splashTransition: SplashTransition.scaleTransition,
+        pageTransitionType: PageTransitionType.bottomToTop,
+        backgroundColor: MyColors().primaryColor,
+        nextScreen: const Navbar(),
       ),
     );
-    }
   }
-
+}
