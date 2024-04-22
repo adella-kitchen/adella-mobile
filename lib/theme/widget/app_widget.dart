@@ -35,9 +35,9 @@ class TfEmail extends StatelessWidget {
   final TextEditingController controller;
 
   const TfEmail({
-    Key? key, // Perbaiki super.key menjadi Key? key
+    super.key, // Perbaiki super.key menjadi Key? key
     required this.controller,
-  }) : super(key: key); // Super harus memiliki key
+  }); // Super harus memiliki key
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +81,41 @@ class TfEmail extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class TfSearch extends StatelessWidget {
+  final String hint;
+  final TextEditingController controller;
+
+  const TfSearch({super.key, required this.hint, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      child: TextField(
+        controller: controller,
+        style: const TextStyle(fontSize: 15, color: Colors.black),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.symmetric(vertical: 12),
+          hintText: hint,
+          hintStyle: const TextStyle(color: Colors.grey),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
+          ),
+          prefixIcon: const Icon(
+            Ionicons.search,
+            color: Colors.grey,
+          ),
+        ),
+        cursorColor: Colors.black,
+        keyboardType: TextInputType.text,
+      ),
     );
   }
 }
@@ -148,11 +183,11 @@ class TfPass extends StatefulWidget {
   final TextEditingController controller;
 
   const TfPass({
-    Key? key,
+    super.key,
     required this.controller,
     required this.label,
     required this.hint,
-  }) : super(key: key);
+  });
 
   @override
   _TfPassState createState() => _TfPassState();

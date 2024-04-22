@@ -19,7 +19,7 @@ class DashboardView extends StatelessWidget {
         body: SafeArea(
             child: IndexedStack(
           index: controller.tabIndex,
-          children: const [
+          children:  [
             HomeView(),
             ExploreView(),
             CartView(),
