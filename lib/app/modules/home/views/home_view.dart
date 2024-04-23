@@ -1,10 +1,11 @@
 import 'package:adella_kitchen/app/modules/home/views/widget.dart';
+import 'package:adella_kitchen/theme/app_theme.dart';
 import 'package:adella_kitchen/theme/color.dart';
 import 'package:adella_kitchen/theme/widget/app_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:icons_plus/icons_plus.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -25,7 +26,13 @@ class HomeView extends GetView<HomeController> {
         Container(
           padding: const EdgeInsets.all(20),
           width: double.infinity,
-          color: myColor().primaryColor,
+          decoration: BoxDecoration(
+            color: myColor().primaryColor,
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30),
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,77 +42,82 @@ class HomeView extends GetView<HomeController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Alamat',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      Text(
+                        'Selamat berbelanja 👋',
+                        style: TextStyle(
+                            fontSize: fontSize().regular, color: Colors.white),
                       ),
-                      DropdownButton<String>(
-                        value: controller.selectedAddress.value,
-                        onChanged: (String? newValue) {
-                          if (newValue != null) {
-                            print('New value selected: $newValue');
-                            controller.selectedAddress.value = newValue;
-                            print(
-                                'Selected address: ${controller.selectedAddress.value}');
-                            controller.update();
-                          }
-                        },
-                        items: <String>[
-                          'Jl. Jalan, Jawa Timur',
-                          'Jl. Kenangan Jawa Timur',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.location_on,
-                                  color: Colors.white,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  value,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          );
-                        }).toList(),
+                      Text(
+                        'Lutfi Hakim',
+                        style: TextStyle(
+                          fontSize: fontSize().medium,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
                   const Spacer(),
                   Material(
-                    borderRadius: BorderRadius.circular(
-                        10.0), // Atur nilai border radius sesuai keinginan Anda
                     color: const Color(0xFFDC495C),
+                    borderRadius: BorderRadius.circular(10),
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Sama dengan nilai border radius di Material
                       onTap: () {
                         // Tambahkan aksi yang ingin dilakukan saat tombol ditekan
                       },
+                      borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: const EdgeInsets.all(10),
                         child: const Icon(
-                          Ionicons.cart,
+                          Icons.shopping_cart,
                           color: Colors.white,
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               const SizedBox(height: 13),
-              TfSearch(hint: 'Cari Menu', controller: searchController)
+              TfSearch(hint: 'Cari Menu Makanan', controller: searchController),
+              const SizedBox(height: 10),
             ],
           ),
         ),
+
         //main content
-        const Padding(
-          padding: EdgeInsets.all(20),
+        Padding(
+          padding: const EdgeInsets.all(20),
           child: Column(
-            children: [titleText(text: 'Kategori')],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const titleText(text: 'Kategori'),
+              const SizedBox(height: 10),
+              CategoryRow(categories: [
+                CategoryItemData(
+                    text: 'Makanan',
+                    icon: BoxIcons.bxs_bowl_rice,
+                    onPressed: () {}),
+                CategoryItemData(
+                    text: 'Minuman',
+                    icon: BoxIcons.bxs_coffee,
+                    onPressed: () {}),
+                CategoryItemData(
+                    text: 'Catering',
+                    icon: BoxIcons.bxs_dish,
+                    onPressed: () {}),
+                CategoryItemData(
+                    text: 'Kotakan', icon: BoxIcons.bxs_box, onPressed: () {}),
+                CategoryItemData(
+                    text: 'Frozen',
+                    icon: BoxIcons.bxs_fridge,
+                    onPressed: () {}),
+              ]),
+              const Padding(
+                padding: EdgeInsets.only(top: 15, bottom: 10),
+                child: titleText(text: 'Promo'),
+              )
+              
+            ],
           ),
         ),
       ],
