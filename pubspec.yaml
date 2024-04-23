@@ -8,9 +8,11 @@ environment:
 dependencies: 
   ionicons: 0.2.2
   animated_splash_screen: 1.3.0
-  cupertino_icons: ^1.0.2  
+  cupertino_icons: ^1.0.2
   flutter_signin_button: 2.0.0
   get: 4.6.6
+  animated_custom_dropdown: 3.0.0
+  icons_plus: 5.0.0
   flutter: 
     sdk: flutter
 
