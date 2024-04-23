@@ -27,7 +27,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () =>  HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -52,7 +52,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.EXPLORE,
-      page: () => const ExploreView(),
+      page: () => ExploreView(),
       binding: ExploreBinding(),
     ),
     GetPage(
