@@ -14,14 +14,10 @@ class SplashScreenView extends GetView<SplashScreenController> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-        splash: const Text(
-          'Adella Kitchen',
-          style: TextStyle(
-              color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
-        ),
+        splash: Image.asset('assets/img/adela_white.png'),
         duration: 1500,
         backgroundColor: myColor().primaryColor,
         pageTransitionType: PageTransitionType.fade,
-        nextScreen:  LoginView());
+        nextScreen: LoginView());
   }
 }
