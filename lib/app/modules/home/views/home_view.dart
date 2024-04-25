@@ -19,6 +19,11 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     Get.lazyPut(() => HomeController());
 
+    List<Map<String, dynamic>> myProducts = List.generate(
+      10,
+      (index) => {"id": index + 1, "name": "Product ${index + 1}"},
+    );
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(
@@ -166,9 +171,37 @@ class HomeView extends GetView<HomeController> {
                     );
                   }),
                 ),
-                const Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 10),
-                    child: titleText(text: 'Produk Kami')),
+                Padding(
+                    padding: const EdgeInsets.only(top: 20, bottom: 10),
+                    child: Row(
+                      children: [
+                        const titleText(text: 'Produk Kami'),
+                        const Spacer(),
+                        Text(
+                          'Selengkapnya',
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: myColor().primaryColor,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    )
+                    ),
+                FillImageCard(
+                  width: 180,
+                  heightImage: 120,
+                  imageProvider: const NetworkImage(
+                    'https://codecanyon.img.customer.envatousercontent.com/files/352931146/Preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=29e647d179d8704189dced38088fac34',
+                  ),
+                  title: _title(),
+                  // tags: [
+                  //   _tag('Diskon 15%', () {}),
+                  // ],
+                  description: _content(),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
               ],
             ),
           ),
@@ -176,4 +209,58 @@ class HomeView extends GetView<HomeController> {
       ),
     ));
   }
+}
+
+Widget _title({Color? color}) {
+  return Text(
+    'Nasi Kebuli',
+    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: color),
+  );
+}
+
+Widget _content({Color? color}) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        'Rp. 15,000',
+        style: TextStyle(color: color),
+      ),
+      const SizedBox(
+        height: 5,
+      ),
+      Row(
+        children: [
+          Icon(
+            IonIcons.time,
+            color: myColor().grey500,
+            size: 16,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: Text(
+              '2 Hari',
+              style: TextStyle(color: myColor().grey500, fontSize: 12),
+            ),
+          ),
+        ],
+      ),
+    ],
+  );
+}
+
+Widget _tag(String tag, VoidCallback onPressed) {
+  return InkWell(
+    onTap: onPressed,
+    child: Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          color: myColor().primaryColor),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      child: Text(
+        tag,
+        style: const TextStyle(color: Colors.white),
+      ),
+    ),
+  );
 }
