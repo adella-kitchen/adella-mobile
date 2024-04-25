@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
 
-  RxString selectedAddress = 'Jl. Jalan, Jawa Timur'.obs;
+  RxInt currentIndex = 0.obs;
 
   @override
   void onInit() {

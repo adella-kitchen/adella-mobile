@@ -1,6 +1,7 @@
+import 'package:adella_kitchen/app/modules/home/views/data_img.dart';
 import 'package:adella_kitchen/theme/color.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 class titleText extends StatelessWidget {
   final String text;
