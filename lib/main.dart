@@ -1,5 +1,7 @@
-import 'package:adella_kitchen/app/modules/login/controllers/login_controller.dart';
+import 'package:adella_kitchen/theme/app_theme.dart';
+import 'package:adella_kitchen/theme/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
@@ -10,6 +12,7 @@ void main() {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Application",
+      theme: AppTheme.getAppTheme(),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),

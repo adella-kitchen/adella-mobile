@@ -18,5 +18,6 @@ class AppTheme {
 }
 
 class fontSize {
-  final double regular = 15;
+  final double regular = 14;
+  final double medium = 18;
 }

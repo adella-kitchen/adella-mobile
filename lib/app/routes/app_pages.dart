@@ -22,12 +22,12 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH_SCREEN;
+  static const INITIAL = Routes.DASHBOARD;
 
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -52,7 +52,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.EXPLORE,
-      page: () => const ExploreView(),
+      page: () => ExploreView(),
       binding: ExploreBinding(),
     ),
     GetPage(
