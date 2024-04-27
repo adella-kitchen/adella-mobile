@@ -88,3 +88,63 @@ class pageIndicator extends StatelessWidget {
         ));
   }
 }
+
+class NextBtn extends StatelessWidget {
+  const NextBtn({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = OnboardingController.instance;
+
+    return Obx(() {
+      final isVisible = controller.currentPageIndex.value == 2;
+
+      return Positioned(
+        bottom: 72,
+        right: 33,
+        child: AnimatedOpacity(
+          opacity: isVisible
+              ? 1.0
+              : 0.0, // Opacity 1.0 jika isVisible true, sebaliknya 0.0
+          duration: const Duration(milliseconds: 400),
+          child: Visibility(
+            visible: isVisible,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                backgroundColor: myColor().primaryColor,
+              ),
+              onPressed: () {
+                controller.nextPage();
+              },
+              child: (const Text(
+                'Selanjutnya',
+                style: TextStyle(color: Colors.white),
+              )),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+}
+
+class indicatorText extends StatelessWidget {
+  const indicatorText({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+        bottom: 70,
+        left: 38,
+        child: Text(
+          'Geser untuk next >>',
+          style: TextStyle(fontSize: 12, color: myColor().grey500),
+        ));
+  }
+}
