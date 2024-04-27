@@ -62,3 +62,29 @@ class onBoardingPage extends StatelessWidget {
     );
   }
 }
+
+class pageIndicator extends StatelessWidget {
+  pageIndicator({
+    super.key,
+  });
+
+  final controller = OnboardingController.instance;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+        bottom: 100,
+        left: 38,
+        child: SmoothPageIndicator(
+          controller: controller.pageController,
+          onDotClicked: controller.dotNavigationClick,
+          count: 3,
+          effect: ExpandingDotsEffect(
+            activeDotColor: myColor().primaryColor,
+            spacing: 12,
+            dotHeight: 14,
+            dotWidth: 14,
+          ),
+        ));
+  }
+}
