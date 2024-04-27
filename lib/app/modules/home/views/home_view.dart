@@ -98,7 +98,7 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const titleText(text: 'Kategori'),
+                const titleText(text: 'Kategori',textAlign: TextAlign.start,),
                 const SizedBox(height: 10),
                 CategoryRow(categories: [
                   CategoryItemData(
@@ -126,7 +126,7 @@ class HomeView extends GetView<HomeController> {
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Row(
                     children: [
-                      const titleText(text: 'Promo Untukmu'),
+                      const titleText(text: 'Promo Untukmu',textAlign: TextAlign.start,),
                       const Spacer(),
                       Text(
                         'Selengkapnya',
@@ -175,7 +175,7 @@ class HomeView extends GetView<HomeController> {
                     padding: const EdgeInsets.only(top: 20, bottom: 10),
                     child: Row(
                       children: [
-                        const titleText(text: 'Produk Kami'),
+                        const titleText(text: 'Produk Kami',textAlign: TextAlign.start,),
                         const Spacer(),
                         Text(
                           'Selengkapnya',
