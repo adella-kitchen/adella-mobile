@@ -1,23 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ExploreController extends GetxController {
-  //TODO: Implement ExploreController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  late TextEditingController searchController = TextEditingController();
+  List<Map<String, dynamic>> myProducts = List.generate(
+    11,
+    (index) => {"id": index + 1, "name": "Product ${index + 1}"},
+  );
 }

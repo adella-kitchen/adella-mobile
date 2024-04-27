@@ -88,8 +88,9 @@ class TfEmail extends StatelessWidget {
 class TfSearch extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
+  final BorderSide borderSide;
 
-  const TfSearch({super.key, required this.hint, required this.controller});
+  const TfSearch({super.key, required this.hint, required this.controller, required this.borderSide});
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +107,7 @@ class TfSearch extends StatelessWidget {
           hintStyle: const TextStyle(color: Colors.grey),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
+            borderSide: borderSide
           ),
           prefixIcon: const Icon(
             Ionicons.search,
