@@ -14,4 +14,17 @@ class OnboardingController extends GetxController {
     pageController.jumpToPage(index);
   }
 
+  void nextPage() {
+    if (currentPageIndex.value == 2) {
+      Get.to(const RegisterView());
+    } else {
+      int page = currentPageIndex.value + 1;
+      pageController.jumpToPage(page);
+    }
+  }
+
+  void skipPage() {
+    currentPageIndex.value = 2;
+    pageController.jumpToPage(2);
+  }
 }
