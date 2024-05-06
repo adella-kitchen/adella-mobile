@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 
 class titleText extends StatelessWidget {
   final String text;
+  final TextAlign textAlign;
 
-  const titleText({super.key, required this.text});
+  const titleText({super.key, required this.text, required this.textAlign});
 
   @override
   Widget build(BuildContext context) {
     return Text(
+      textAlign: textAlign,
       text,
-      style: TextStyle(
+      style: TextStyle(        
           fontSize: 20, fontWeight: FontWeight.bold, color: myColor().grey700),
     );
   }
