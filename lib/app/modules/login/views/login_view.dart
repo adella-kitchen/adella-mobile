@@ -11,7 +11,9 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  LoginView({Key? key});
+  LoginView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
                 ),
-                BtnPrimary(
+                BtnLogin(
                   btnText: 'Login',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -62,6 +64,7 @@ class LoginView extends GetView<LoginController> {
                           controller.passwordController.text);
                     }
                   },
+                  isLoading: controller.isLoading.value,
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 30),

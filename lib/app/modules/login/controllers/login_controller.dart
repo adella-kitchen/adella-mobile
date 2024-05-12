@@ -1,31 +1,41 @@
 import 'dart:convert';
-import 'package:adella_kitchen/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:adella_kitchen/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class LoginController extends GetxController {
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
-  var ip = '192.168.8.134';
+  var isLogin = false.obs;
+  var ip = '192.168.1.108';
   var isLoading = false.obs;
-  var token = ''.obs;
+
+  void initEmailController() {
+    emailController = TextEditingController();
+  }
+
+  void initPasswordController() {
+    passwordController = TextEditingController();
+  }
 
   @override
   void onInit() {
     super.onInit();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    checkLoginStatus();
+    printToken();
   }
 
-  @override
-  void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  //   super.onClose();
+  // }
 
   Future<void> login(String email, String password) async {
     isLoading.value = true;
@@ -39,29 +49,50 @@ class LoginController extends GetxController {
       });
 
       if (response.statusCode == 200) {
-        // Respons JSON yang diterima
         final responseData = json.decode(response.body);
 
-        // Ambil nilai dari kunci 'plainTextToken'
         final plainTextToken = responseData['token'];
-        final name = responseData['name'];
-
-        // Cetak token di console
         print('Token: $plainTextToken');
 
-        // Lanjutkan sesuai kebutuhan
+        await saveToken(plainTextToken);
+
+        isLogin.value = true;
         Get.offNamed(Routes.DASHBOARD);
+
+        final successMessage = responseData['message'];
+        Get.snackbar('Success', successMessage);
       } else {
-        // Gagal login, tampilkan pesan kesalahan
         final responseData = json.decode(response.body);
         final errorMessage = responseData['message'];
-        Get.snackbar('Login Error', errorMessage);
+        Get.snackbar('Gagal Login', errorMessage);
       }
     } catch (e) {
       print('Error: $e');
-      Get.snackbar('Error', 'Failed to login');
+      Get.snackbar('Error', '$e');
     } finally {
       isLoading.value = false;
     }
+  }
+
+  Future<void> saveToken(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('token', token);
+  }
+
+  Future<void> checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? savedToken = prefs.getString('token');
+
+    isLogin.value = savedToken != null;
+
+    if (savedToken == null) {
+      Get.offNamed(Routes.LOGIN);
+    }
+  }
+
+  Future<void> printToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? savedToken = prefs.getString('token');
+    print('Token on app start: $savedToken');
   }
 }
