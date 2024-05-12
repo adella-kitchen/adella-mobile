@@ -23,8 +23,8 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-
-  static const INITIAL = Routes.DASHBOARD;
+  
+  static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
     GetPage(
@@ -44,7 +44,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SPLASH_SCREEN,
-      page: () => const SplashScreenView(),
+      page: () =>  SplashScreenView(),
       binding: SplashScreenBinding(),
     ),
     GetPage(

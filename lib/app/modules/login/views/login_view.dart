@@ -10,18 +10,14 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passController = TextEditingController();
 
-  LoginView({super.key});
+  LoginView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     Get.put(LoginController());
-    Get.lazyPut(
-      () => LoginController(),
-    );
-
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -42,9 +38,9 @@ class LoginView extends GetView<LoginController> {
                       'Masuk kembali ke akunmu, dan nikmati fitur lengkap dari Adella Kitchen',
                 ),
                 const SizedBox(height: 30),
-                TfEmail(controller: _emailController),
+                TfEmail(controller: controller.emailController),
                 TfPass(
-                  controller: _passController,
+                  controller: controller.passwordController,
                   label: 'Password',
                   hint: 'Masukkan Password',
                 ),
@@ -58,16 +54,17 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
                 ),
-                BtnPrimary(
+                BtnLogin(
                   btnText: 'Login',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
                       print('form valid');
-                      controller.login(
-                          _emailController.text, _passController.text);
+                      controller.login(controller.emailController.text,
+                          controller.passwordController.text);
                     }
                   },
+                  isLoading: controller.isLoading.value,
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 30),

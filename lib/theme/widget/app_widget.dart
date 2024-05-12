@@ -33,11 +33,12 @@ class subTitle extends StatelessWidget {
 
 class TfEmail extends StatelessWidget {
   final TextEditingController controller;
+  final void Function()? onTap;
 
-  const TfEmail({
-    super.key, // Perbaiki super.key menjadi Key? key
-    required this.controller,
-  }); // Super harus memiliki key
+  const TfEmail(
+      {super.key, // Perbaiki super.key menjadi Key? key
+      required this.controller,
+      this.onTap}); // Super harus memiliki key
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +79,7 @@ class TfEmail extends StatelessWidget {
               return null;
             },
             keyboardType: TextInputType.emailAddress,
+            onTap: onTap,
           ),
         ),
       ],
@@ -88,8 +90,10 @@ class TfEmail extends StatelessWidget {
 class TfSearch extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
+  final void Function()? onTap;
+  final BorderSide borderSide;
 
-  const TfSearch({super.key, required this.hint, required this.controller});
+  const TfSearch({super.key, required this.hint, required this.controller, required this.borderSide, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +110,7 @@ class TfSearch extends StatelessWidget {
           hintStyle: const TextStyle(color: Colors.grey),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
+            borderSide: borderSide
           ),
           prefixIcon: const Icon(
             Ionicons.search,
@@ -115,6 +119,7 @@ class TfSearch extends StatelessWidget {
         ),
         cursorColor: Colors.black,
         keyboardType: TextInputType.text,
+        onTap: onTap,
       ),
     );
   }
@@ -125,13 +130,15 @@ class TfText extends StatelessWidget {
   final String placeHolder;
   final String validate;
   final TextEditingController controller;
+  final void Function()? onTap;
 
   const TfText(
       {super.key,
       required this.label,
       required this.placeHolder,
       required this.validate,
-      required this.controller});
+      required this.controller,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -170,6 +177,7 @@ class TfText extends StatelessWidget {
               return null;
             },
             keyboardType: TextInputType.text,
+            onTap: onTap,
           ),
         ),
       ],
@@ -181,13 +189,14 @@ class TfPass extends StatefulWidget {
   final String label;
   final String hint;
   final TextEditingController controller;
+  final void Function()? onTap;
 
-  const TfPass({
-    super.key,
-    required this.controller,
-    required this.label,
-    required this.hint,
-  });
+  const TfPass(
+      {super.key,
+      required this.controller,
+      required this.label,
+      required this.hint,
+      this.onTap});
 
   @override
   _TfPassState createState() => _TfPassState();
@@ -249,6 +258,7 @@ class _TfPassState extends State<TfPass> {
               }
               return null;
             },
+            onTap: widget.onTap,
           ),
         ),
       ],
@@ -291,6 +301,65 @@ class BtnPrimary extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class BtnLogin extends StatelessWidget {
+  final String btnText;
+  final VoidCallback? onPressed;
+  final bool isLoading; // Tambahkan properti isLoading
+
+  const BtnLogin({
+    super.key,
+    required this.btnText,
+    required this.onPressed,
+    required this.isLoading, // Tambahkan isLoading
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 15),
+      child: SizedBox(
+        height: 50,
+        width: double.infinity,
+        child: Stack(
+          children: [
+            ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+                minimumSize: MaterialStateProperty.all(
+                  const Size(double.infinity, 50),
+                ),
+                backgroundColor: MaterialStateProperty.all(
+                  myColor().primaryColor,
+                ),
+              ),
+              onPressed: isLoading
+                  ? null
+                  : onPressed, // Disable tombol saat isLoading true
+              child: Text(
+                btnText,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            if (isLoading) // Tampilkan indikator loading jika isLoading true
+              const Positioned.fill(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+          ],
         ),
       ),
     );
