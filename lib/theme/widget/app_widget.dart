@@ -91,9 +91,9 @@ class TfSearch extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
   final void Function()? onTap;
+  final BorderSide borderSide;
 
-  const TfSearch(
-      {super.key, required this.hint, required this.controller, this.onTap});
+  const TfSearch({super.key, required this.hint, required this.controller, required this.borderSide, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class TfSearch extends StatelessWidget {
           hintStyle: const TextStyle(color: Colors.grey),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
+            borderSide: borderSide
           ),
           prefixIcon: const Icon(
             Ionicons.search,

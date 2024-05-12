@@ -86,7 +86,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 const SizedBox(height: 13),
                 TfSearch(
-                    hint: 'Cari Menu Makanan', controller: searchController),
+                    hint: 'Cari Menu Makanan', controller: searchController, borderSide: BorderSide.none,),
                 const SizedBox(height: 10),
               ],
             ),
