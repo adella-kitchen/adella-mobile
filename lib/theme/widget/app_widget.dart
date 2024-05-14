@@ -1,5 +1,7 @@
 import 'package:adella_kitchen/theme/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:ionicons/ionicons.dart';
 
 class AppBarTitle extends StatelessWidget {
@@ -363,5 +365,40 @@ class BtnLogin extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class CustomSnackBar {
+  static void showSuccess(
+    String title,
+    String desc,
+  ) {
+    Get.snackbar(
+      title,
+      desc,
+      icon: const Icon(Ionicons.checkmark_circle_outline),
+      leftBarIndicatorColor: const Color(0xff198754),
+      duration: const Duration(seconds: 2),
+    );
+  }
+
+  static void showWarning(
+    String title,
+    String desc,
+  ) {
+    Get.snackbar(title, desc,
+        icon: const Icon(Ionicons.warning),
+        leftBarIndicatorColor: const Color(0xffffc107),
+        duration: const Duration(seconds: 2));
+  }
+
+  static void showError(
+    String title,
+    String desc,
+  ) {
+    Get.snackbar(title, desc,
+        icon: const Icon(Ionicons.bug),
+          leftBarIndicatorColor: const Color(0xffdc3545),
+          duration: const Duration(seconds: 2));
   }
 }

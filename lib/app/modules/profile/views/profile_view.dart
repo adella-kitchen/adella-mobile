@@ -18,10 +18,7 @@ class ProfileView extends GetView<ProfileController> {
       appBar: AppBar(
         toolbarHeight: 70,
         title: const Text('Profile',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold)),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -34,7 +31,7 @@ class ProfileView extends GetView<ProfileController> {
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   child: const Icon(
-                    Icons.shopping_cart,
+                    IonIcons.notifications,
                     color: Colors.white,
                   ),
                 ),
@@ -42,7 +39,6 @@ class ProfileView extends GetView<ProfileController> {
             ),
           ),
         ],
-        backgroundColor: myColor().primaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14),
@@ -81,7 +77,7 @@ class ProfileView extends GetView<ProfileController> {
                         iconLeading: Icons.arrow_forward_ios_outlined,
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       TitleCard(
                         text: 'Pengaturan Akun',
@@ -89,7 +85,7 @@ class ProfileView extends GetView<ProfileController> {
                         iconButton: Icons.arrow_forward_ios_outlined,
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       TitleCard(
                         text: 'Pesanan',
@@ -98,7 +94,7 @@ class ProfileView extends GetView<ProfileController> {
                         iconLeading: Icons.arrow_forward_ios_outlined,
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       TitleCard(
                         text: 'Pengaturan alamat',
