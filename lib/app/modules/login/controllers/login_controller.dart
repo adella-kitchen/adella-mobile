@@ -10,7 +10,7 @@ class LoginController extends GetxController {
   late TextEditingController passwordController;
 
   var isLogin = false.obs;
-  var ip = '192.168.1.108';
+  var ip = '192.168.1.5';
   var isLoading = false.obs;
 
   void initEmailController() {
