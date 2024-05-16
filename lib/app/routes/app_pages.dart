@@ -18,13 +18,17 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
+import '../modules/starter/bindings/starter_binding.dart';
+import '../modules/starter/views/starter_view.dart';
+import '../modules/step_page/bindings/step_page_binding.dart';
+import '../modules/step_page/views/step_page_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-  
-  static const INITIAL = Routes.SPLASH_SCREEN;
+
+  static const INITIAL = Routes.STARTER;
 
   static final routes = [
     GetPage(
@@ -44,7 +48,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SPLASH_SCREEN,
-      page: () =>  SplashScreenView(),
+      page: () => SplashScreenView(),
       binding: SplashScreenBinding(),
     ),
     GetPage(
@@ -71,6 +75,16 @@ class AppPages {
       name: _Paths.ONBOARDING,
       page: () => const OnboardingView(),
       binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: _Paths.STARTER,
+      page: () => const StarterView(),
+      binding: StarterBinding(),
+    ),
+    GetPage(
+      name: _Paths.STEP_PAGE,
+      page: () => const StepPageView(),
+      binding: StepPageBinding(),
     ),
   ];
 }
