@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:adella_kitchen/app/modules/home/views/widget.dart';
 import 'package:adella_kitchen/app/modules/step_page/views/step_page_view.dart';
 import 'package:adella_kitchen/app/routes/app_pages.dart';
