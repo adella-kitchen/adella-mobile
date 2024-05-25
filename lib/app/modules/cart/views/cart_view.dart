@@ -11,13 +11,14 @@ class CartView extends GetView<CartController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => CartController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Keranjang'),
       ),
       body: Obx(() {
         if (controller.cartItems.isEmpty) {
-          return EmptyView();
+          return const EmptyView();
         }
         return ListView.builder(
           itemCount: controller.cartItems.length,

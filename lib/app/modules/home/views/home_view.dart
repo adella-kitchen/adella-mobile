@@ -1,5 +1,6 @@
 import 'package:adella_kitchen/app/modules/home/views/data_img.dart';
 import 'package:adella_kitchen/app/modules/home/views/widget.dart';
+import 'package:adella_kitchen/app/routes/app_pages.dart';
 import 'package:adella_kitchen/theme/app_theme.dart';
 import 'package:adella_kitchen/theme/color.dart';
 import 'package:adella_kitchen/theme/widget/app_widget.dart';
@@ -65,28 +66,15 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     const Spacer(),
-                    Material(
-                      color: const Color(0xFFDC495C),
-                      borderRadius: BorderRadius.circular(10),
-                      child: InkWell(
-                        onTap: () {
-                          // Tambahkan aksi yang ingin dilakukan saat tombol ditekan
-                        },
-                        borderRadius: BorderRadius.circular(10),
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          child: const Icon(
-                            Icons.shopping_cart,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    CartIconWithBadge()
                   ],
                 ),
                 const SizedBox(height: 13),
                 TfSearch(
-                    hint: 'Cari Menu Makanan', controller: searchController, borderSide: BorderSide.none,),
+                  hint: 'Cari Menu Makanan',
+                  controller: searchController,
+                  borderSide: BorderSide.none,
+                ),
                 const SizedBox(height: 10),
               ],
             ),
@@ -98,7 +86,10 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const titleText(text: 'Kategori',textAlign: TextAlign.start,),
+                const titleText(
+                  text: 'Kategori',
+                  textAlign: TextAlign.start,
+                ),
                 const SizedBox(height: 10),
                 CategoryRow(categories: [
                   CategoryItemData(
@@ -126,7 +117,10 @@ class HomeView extends GetView<HomeController> {
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Row(
                     children: [
-                      const titleText(text: 'Promo Untukmu',textAlign: TextAlign.start,),
+                      const titleText(
+                        text: 'Promo Untukmu',
+                        textAlign: TextAlign.start,
+                      ),
                       const Spacer(),
                       Text(
                         'Selengkapnya',
@@ -175,7 +169,10 @@ class HomeView extends GetView<HomeController> {
                     padding: const EdgeInsets.only(top: 20, bottom: 10),
                     child: Row(
                       children: [
-                        const titleText(text: 'Produk Kami',textAlign: TextAlign.start,),
+                        const titleText(
+                          text: 'Produk Kami',
+                          textAlign: TextAlign.start,
+                        ),
                         const Spacer(),
                         Text(
                           'Selengkapnya',
@@ -185,8 +182,7 @@ class HomeView extends GetView<HomeController> {
                               fontWeight: FontWeight.w500),
                         ),
                       ],
-                    )
-                    ),
+                    )),
                 FillImageCard(
                   width: 180,
                   heightImage: 120,

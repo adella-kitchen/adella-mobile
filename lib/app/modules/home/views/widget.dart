@@ -1,7 +1,11 @@
-import 'package:adella_kitchen/app/modules/home/views/data_img.dart';
+import 'package:adella_kitchen/app/modules/cart/controllers/cart_controller.dart';
+import 'package:adella_kitchen/app/routes/app_pages.dart';
 import 'package:adella_kitchen/theme/color.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class titleText extends StatelessWidget {
   final String text;
@@ -14,7 +18,7 @@ class titleText extends StatelessWidget {
     return Text(
       textAlign: textAlign,
       text,
-      style: TextStyle(        
+      style: TextStyle(
           fontSize: 20, fontWeight: FontWeight.bold, color: myColor().grey700),
     );
   }
@@ -275,7 +279,6 @@ class ImageCardContent extends StatelessWidget {
   }
 }
 
-
 // Widget _title({Color? color}) {
 //   return Text(
 //     'Card title',
@@ -326,3 +329,39 @@ class ImageCardContent extends StatelessWidget {
 //     ),
 //   );
 // }
+class CartIconWithBadge extends StatelessWidget {
+  final CartController cartController = Get.put(CartController());
+
+  CartIconWithBadge({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      return badges.Badge(
+        badgeAnimation: const badges.BadgeAnimation.scale(),
+        badgeContent: Text(
+          cartController.cartItems.length.toString(),
+          style: const TextStyle(
+              color: Color(0xFFDC495C), fontWeight: FontWeight.bold),
+        ),
+        badgeStyle: const badges.BadgeStyle(badgeColor: Colors.white),
+        position: badges.BadgePosition.topEnd(top: -10, end: -10),
+        child: Material(
+          color: const Color(0xFFDC495C),
+          borderRadius: BorderRadius.circular(10),
+          child: InkWell(
+            onTap: () => Get.toNamed(Routes.CART),
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: const Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+}
