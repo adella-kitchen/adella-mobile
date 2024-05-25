@@ -337,10 +337,12 @@ class CartIconWithBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
+      final itemCount = cartController.cartItems.length;
       return badges.Badge(
+        showBadge: itemCount > 0,
         badgeAnimation: const badges.BadgeAnimation.scale(),
         badgeContent: Text(
-          cartController.cartItems.length.toString(),
+          itemCount.toString(),
           style: const TextStyle(
               color: Color(0xFFDC495C), fontWeight: FontWeight.bold),
         ),

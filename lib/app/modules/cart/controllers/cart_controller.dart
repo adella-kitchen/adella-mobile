@@ -3,11 +3,16 @@ import 'package:get/get.dart';
 
 class CartController extends GetxController {
   // List of cart items
-  var cartItems = <CartItem>[].obs;
+  // var cartItems = <CartItem>[].obs;
+  RxList<CartItem> cartItems = <CartItem>[].obs;
+  RxDouble totalHarga = 0.0.obs;
 
   @override
   void onInit() {
     super.onInit();
+
+    ever(cartItems, (_) => hitungTotalHarga());
+
     addItems([
       CartItem(
         id: 1,
@@ -85,12 +90,25 @@ class CartController extends GetxController {
     cartItems.removeWhere((item) => item.id == id);
   }
 
+  // Method untuk menghitung total harga
+  void hitungTotalHarga() {
+    double total = 0.0;
+    for (var item in cartItems) {
+      if (item.isSelected) {
+        total += item.price
+            // * item.quantity
+            ;
+      }
+    }
+    totalHarga.value = total;
+  }
+
   void toggleItemSelection(int itemId) {
     final selectedItemIndex = cartItems.indexWhere((item) => item.id == itemId);
     if (selectedItemIndex != -1) {
       cartItems[selectedItemIndex].isSelected =
           !cartItems[selectedItemIndex].isSelected;
-      cartItems.refresh(); // Refresh the entire list to update UI
+      cartItems.refresh();
     } else {
       print('Item with id $itemId not found in cartItems list.');
     }
@@ -114,5 +132,27 @@ class CartController extends GetxController {
   // Get the total price of the cart
   double get totalPrice {
     return cartItems.fold(0, (sum, item) => sum + (item.price * item.quantity));
+  }
+
+  // Method to calculate total price of selected items
+  double calculateSelectedTotalPrice() {
+    double totalPrice = 0;
+    for (var item in cartItems) {
+      if (item.isSelected) {
+        totalPrice += item.price * item.quantity;
+      }
+    }
+    return totalPrice;
+  }
+
+  // Method to calculate total number of selected items
+  int calculateSelectedTotalItems() {
+    int totalItems = 0;
+    for (var item in cartItems) {
+      if (item.isSelected) {
+        totalItems += item.quantity;
+      }
+    }
+    return totalItems;
   }
 }
