@@ -88,9 +88,9 @@ class CartController extends GetxController {
   void toggleItemSelection(int itemId) {
     final selectedItemIndex = cartItems.indexWhere((item) => item.id == itemId);
     if (selectedItemIndex != -1) {
-      final selectedItem = cartItems[selectedItemIndex];
-      selectedItem.isSelected = !selectedItem.isSelected;
-      update(); // Memperbarui tampilan setelah item dipilih atau tidak
+      cartItems[selectedItemIndex].isSelected =
+          !cartItems[selectedItemIndex].isSelected;
+      cartItems.refresh(); // Refresh the entire list to update UI
     } else {
       print('Item with id $itemId not found in cartItems list.');
     }
