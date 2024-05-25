@@ -1,4 +1,4 @@
-import 'package:adella_kitchen/app/modules/cart/model/cart_item.dart';
+import 'package:adella_kitchen/app/data/models/cart_item.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {

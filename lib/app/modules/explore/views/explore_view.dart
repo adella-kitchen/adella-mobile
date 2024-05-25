@@ -81,7 +81,6 @@ class ExploreView extends GetView<ExploreController> {
                         harga: 15000,
                         color: myColor().primaryColor,
                       ),
-                      footer: _footer(durasi: 2),
                     ),
                   );
                 },
