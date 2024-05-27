@@ -3,6 +3,7 @@ import 'package:adella_kitchen/app/modules/cart/views/empty_view.dart';
 import 'package:adella_kitchen/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:input_quantity/input_quantity.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 import '../controllers/cart_controller.dart';
@@ -15,6 +16,26 @@ class CartView extends GetView<CartController> {
     Get.lazyPut(() => CartController());
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          Obx(() {
+            if (controller.isAnyItemSelected) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: TextButton(
+                  child: Text(
+                    'Hapus',
+                    style: TextStyle(color: myColor().primaryColor),
+                  ),
+                  onPressed: () {
+                    controller.removeSelectedItems();
+                  },
+                ),
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          })
+        ],
         title: const Text(
           'Keranjang',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -52,13 +73,19 @@ class CartView extends GetView<CartController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          item.name,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                        SizedBox(
+                          width: 170,
+                          child: Text(
+                            item.name,
+                            softWrap: true,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
                         ),
                         Text(
-                          'Rp. ${NumberFormat('#,##0', 'id_ID').format(item.price)}',
+                          'Rp. ${NumberFormat('#,##0', 'id_ID').format(item.price * item.quantity)}',
                           style: const TextStyle(fontSize: 15),
                         ),
                         Text(
@@ -69,14 +96,17 @@ class CartView extends GetView<CartController> {
                     ),
                   ],
                 ),
-                trailing: IconButton(
-                  icon: const Icon(
-                    Ionicons.trash_outline,
-                    color: Colors.red,
-                  ),
-                  onPressed: () {
-                    controller.removeItem(item.id);
-                  },
+                trailing: InputQty(
+                  decoration: QtyDecorationProps(
+                      isBordered: false,
+                      borderShape: BorderShapeBtn.circle,
+                      btnColor: myColor().primaryColor,
+                      width: 8),
+                  steps: 1,
+                  initVal: item.quantity,
+                  minVal: 1,
+                  onQtyChanged: (value) =>
+                      controller.updateQuantity(item.id, value),
                 ),
               );
             },

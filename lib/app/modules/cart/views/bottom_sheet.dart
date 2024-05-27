@@ -5,51 +5,53 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class BottomView extends StatelessWidget {
-  final CartController cartController = Get.put(CartController());
-  BottomView({
-    super.key,
-  });
+  final CartController cartController = Get.find<CartController>();
+
+  BottomView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Obx(() {
-          return Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text('Total'),
-                    const SizedBox(width: 6),
-                    Text(
-                      'Rp. ${NumberFormat('#,##0', 'id_ID').format(cartController.totalHarga.value)}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: myColor().primaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Spacer(),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: myColor().primaryColor,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Obx(() {
+        final totalHargaSelected = cartController.totalHargaSelected.value;
+        return Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('Total'),
+                  const SizedBox(width: 6),
+                  Text(
+                    'Rp. ${NumberFormat('#,##0', 'id_ID').format(totalHargaSelected)}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: myColor().primaryColor,
                     ),
                   ),
-                  onPressed: () {},
-                  child: const Text(
-                    'Pesan Sekarang',
-                    style: TextStyle(color: Colors.white),
-                  ))
-            ],
-          );
-        }));
+                ],
+              ),
+            ),
+            const Spacer(),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: myColor().primaryColor,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+              ),
+              onPressed: () {},
+              child: const Text(
+                'Pesan Sekarang',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      }),
+    );
   }
 }

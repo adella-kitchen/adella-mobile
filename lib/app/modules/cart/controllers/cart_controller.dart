@@ -6,6 +6,7 @@ class CartController extends GetxController {
   // var cartItems = <CartItem>[].obs;
   RxList<CartItem> cartItems = <CartItem>[].obs;
   RxDouble totalHarga = 0.0.obs;
+  RxDouble totalHargaSelected = 0.0.obs;
 
   @override
   void onInit() {
@@ -16,7 +17,7 @@ class CartController extends GetxController {
     addItems([
       CartItem(
         id: 1,
-        name: 'Barang 1',
+        name: 'Paket Ayam Bebek',
         imageUrl: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
         price: 10000,
         quantity: 1,
@@ -27,51 +28,51 @@ class CartController extends GetxController {
         imageUrl:
             'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
         price: 15000,
-        quantity: 2,
+        quantity: 1,
       ),
       CartItem(
         id: 3,
         name: 'Barang 3',
         imageUrl: 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
-        price: 20000,
-        quantity: 3,
+        price: 25000,
+        quantity: 1,
       ),
       CartItem(
         id: 4,
         name: 'Barang 4',
         imageUrl: 'https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg',
-        price: 20000,
-        quantity: 3,
+        price: 19000,
+        quantity: 1,
       ),
       CartItem(
         id: 5,
         name: 'Barang 5',
         imageUrl:
             'https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg',
-        price: 20000,
-        quantity: 3,
+        price: 15000,
+        quantity: 1,
       ),
       CartItem(
         id: 6,
         name: 'Barang 6',
         imageUrl:
             'https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg',
-        price: 20000,
-        quantity: 3,
+        price: 17000,
+        quantity: 1,
       ),
       CartItem(
         id: 7,
         name: 'Barang 7',
         imageUrl: 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',
-        price: 20000,
-        quantity: 3,
+        price: 12000,
+        quantity: 1,
       ),
       CartItem(
         id: 8,
         name: 'Barang 8',
         imageUrl: 'https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg',
-        price: 40000,
-        quantity: 2,
+        price: 55000,
+        quantity: 1,
       ),
     ]);
   }
@@ -85,22 +86,34 @@ class CartController extends GetxController {
     cartItems.addAll(items);
   }
 
-  // Remove an item from the cart
-  void removeItem(int id) {
-    cartItems.removeWhere((item) => item.id == id);
+  // Method to remove selected items
+  void removeSelectedItems() {
+    cartItems.removeWhere((item) => item.isSelected);
   }
+
+  // Method to check if any item is selected
+  bool get isAnyItemSelected => cartItems.any((item) => item.isSelected);
 
   // Method untuk menghitung total harga
   void hitungTotalHarga() {
     double total = 0.0;
+    double totalSelected = 0.0;
     for (var item in cartItems) {
+      total += item.price * item.quantity;
       if (item.isSelected) {
-        total += item.price
-            // * item.quantity
-            ;
+        totalSelected += item.price * item.quantity;
       }
     }
     totalHarga.value = total;
+    totalHargaSelected.value = totalSelected;
+  }
+
+  void updateItemPrice(int id, double newPrice) {
+    var index = cartItems.indexWhere((item) => item.id == id);
+    if (index != -1) {
+      cartItems[index].price = newPrice; // Update price of the item
+      hitungTotalHarga(); // Recalculate total harga
+    }
   }
 
   void toggleItemSelection(int itemId) {
@@ -114,8 +127,8 @@ class CartController extends GetxController {
     }
   }
 
-  // Update the quantity of an item in the cart
-  void updateQuantity(String id, int quantity) {
+// Method to update the quantity of an item in the cart
+  void updateQuantity(int id, int quantity) {
     var index = cartItems.indexWhere((item) => item.id == id);
     if (index != -1) {
       var item = cartItems[index];
@@ -125,8 +138,19 @@ class CartController extends GetxController {
         imageUrl: item.imageUrl,
         price: item.price,
         quantity: quantity,
+        isSelected: item.isSelected,
       );
+      updateTotalPrice();
     }
+  }
+
+  // Method to update the total price
+  void updateTotalPrice() {
+    double total = 0.0;
+    for (var item in cartItems) {
+      total += item.price * item.quantity;
+    }
+    totalHarga.value = total;
   }
 
   // Get the total price of the cart
