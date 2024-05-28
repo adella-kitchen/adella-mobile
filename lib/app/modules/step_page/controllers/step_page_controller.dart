@@ -5,7 +5,7 @@ class StepPageController extends GetxController {
   var currentStep = 0.obs;
 
   void nextStep() {
-    if (currentStep < 2) { // Asumsikan ada 3 langkah, jadi maksimal 2 (0, 1, 2)
+    if (currentStep < 3) { // Asumsikan ada 3 langkah, jadi maksimal 2 (0, 1, 2)
       currentStep++;
     }
   }

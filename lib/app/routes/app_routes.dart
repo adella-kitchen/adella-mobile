@@ -14,6 +14,8 @@ abstract class Routes {
   static const ONBOARDING = _Paths.ONBOARDING;
   static const STARTER = _Paths.STARTER;
   static const STEP_PAGE = _Paths.STEP_PAGE;
+  static const VERIF_NOTELF = _Paths.VERIF_NOTELF;
+  static const VERIF_NOTELP = _Paths.VERIF_NOTELP;
 }
 
 abstract class _Paths {
@@ -29,4 +31,6 @@ abstract class _Paths {
   static const ONBOARDING = '/onboarding';
   static const STARTER = '/starter';
   static const STEP_PAGE = '/step-page';
+  static const VERIF_NOTELF = '/verif-notelf';
+  static const VERIF_NOTELP = '/verif-notelp';
 }

@@ -4,7 +4,7 @@ import '../controllers/step_page_controller.dart';
 
 class StepPageBinding extends Bindings {
   @override
-  void dependencies() {
+  void dependencies() {    
     Get.lazyPut<StepPageController>(
       () => StepPageController(),
     );
