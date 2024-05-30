@@ -18,43 +18,48 @@ class DashboardView extends StatelessWidget {
       final CartController cartController = Get.put(CartController());
       return Scaffold(
         body: SafeArea(
-            child: IndexedStack(
-          index: controller.tabIndex,
-          children: [
-            HomeView(),
-            ExploreView(),
-            const CartView(),
-            const ProfileView()
-          ],
-        )),
-        bottomNavigationBar: Obx(() {
-          return BottomNavigationBar(
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: myColor().primaryColor,
-            onTap: controller.changeTabIndex,
-            currentIndex: controller.tabIndex,
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-            type: BottomNavigationBarType.fixed,
-            items: [
-              _bottomNavigationBarItem(
-                  activeIcon: Ionicons.home,
-                  icon: Ionicons.home_outline,
-                  label: 'Home'),
-              _bottomNavigationBarItem(
-                  activeIcon: Ionicons.search,
-                  icon: Ionicons.search_outline,
-                  label: 'Search'),
-              _bottomNavigationBarItem(
-                  activeIcon: Ionicons.cart,
-                  icon: Ionicons.cart_outline,
-                  label: 'Cart',
-                  badgeCount: cartController.cartItems.length),
-              _bottomNavigationBarItem(
-                  activeIcon: Ionicons.person,
-                  icon: Ionicons.person_outline,
-                  label: 'Profile'),
+          child: IndexedStack(
+            index: controller.tabIndex,
+            children: [
+              HomeView(),
+              ExploreView(),
+              const CartView(),
+              const ProfileView()
             ],
+          ),
+        ),
+        bottomNavigationBar: Obx(() {
+          final bottomPadding = MediaQuery.of(context).viewPadding.bottom;
+          return Container(
+            padding: EdgeInsets.only(bottom: bottomPadding),
+            child: BottomNavigationBar(
+              unselectedItemColor: Colors.grey,
+              selectedItemColor: myColor().primaryColor,
+              onTap: controller.changeTabIndex,
+              currentIndex: controller.tabIndex,
+              showSelectedLabels: true,
+              showUnselectedLabels: true,
+              type: BottomNavigationBarType.fixed,
+              items: [
+                _bottomNavigationBarItem(
+                    activeIcon: Ionicons.home,
+                    icon: Ionicons.home_outline,
+                    label: 'Home'),
+                _bottomNavigationBarItem(
+                    activeIcon: Ionicons.search,
+                    icon: Ionicons.search_outline,
+                    label: 'Search'),
+                _bottomNavigationBarItem(
+                    activeIcon: Ionicons.cart,
+                    icon: Ionicons.cart_outline,
+                    label: 'Cart',
+                    badgeCount: cartController.cartItems.length),
+                _bottomNavigationBarItem(
+                    activeIcon: Ionicons.person,
+                    icon: Ionicons.person_outline,
+                    label: 'Profile'),
+              ],
+            ),
           );
         }),
       );

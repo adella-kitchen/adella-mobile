@@ -51,14 +51,23 @@ class CartView extends GetView<CartController> {
             itemBuilder: (context, index) {
               final item = controller.cartItems[index];
               return ListTile(
-                leading: Checkbox(
-                  activeColor: myColor().primaryColor,
-                  value: item.isSelected,
-                  onChanged: (bool? value) {
-                    controller.toggleItemSelection(item.id);
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
+                onTap: () {
+                  print('Item with id ${item.id} clicked');
+                },
+                contentPadding: const EdgeInsets.only(
+                    right: 12, left: 2, top: 12, bottom: 12),
+                leading: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                  child: Checkbox(
+                    activeColor: myColor().primaryColor,
+                    value: item.isSelected,
+                    onChanged: (bool? value) {
+                      controller.toggleItemSelection(item.id);
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                   ),
                 ),
                 title: Row(
@@ -74,7 +83,7 @@ class CartView extends GetView<CartController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: 170,
+                          width: 120,
                           child: Text(
                             item.name,
                             softWrap: true,
@@ -84,30 +93,42 @@ class CartView extends GetView<CartController> {
                                 fontWeight: FontWeight.bold, fontSize: 16),
                           ),
                         ),
-                        Text(
-                          'Rp. ${NumberFormat('#,##0', 'id_ID').format(item.price * item.quantity)}',
-                          style: const TextStyle(fontSize: 15),
+                        SizedBox(
+                          width: 120,
+                          child: Text(
+                            'Tambahan jfakfajsasaskfasfasafksafk',
+                            // 'x ${item.quantity}',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: TextStyle(
+                                fontSize: 12, color: myColor().grey500),
+                          ),
                         ),
                         Text(
-                          'x ${item.quantity}',
-                          style: const TextStyle(fontSize: 15),
+                          'Rp. ${NumberFormat('#,##0', 'id_ID').format(item.price * item.quantity)}',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: myColor().primaryColor,
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
                   ],
                 ),
                 trailing: InputQty(
-                  decoration: QtyDecorationProps(
-                      isBordered: false,
-                      borderShape: BorderShapeBtn.circle,
-                      btnColor: myColor().primaryColor,
-                      width: 8),
-                  steps: 1,
-                  initVal: item.quantity,
-                  minVal: 1,
-                  onQtyChanged: (value) =>
-                      controller.updateQuantity(item.id, value),
-                ),
+                    decoration: QtyDecorationProps(
+                        isBordered: false,
+                        borderShape: BorderShapeBtn.circle,
+                        btnColor: myColor().primaryColor,
+                        width: 8),
+                    steps: 1,
+                    initVal: item.quantity,
+                    minVal: 1,
+                    onQtyChanged: (value) {
+                      print('Value received: $value'); // Debugging
+                      print('Type of value: ${value.runtimeType}'); // Debugging
+                      controller.updateQuantity(item.id, value.toInt());
+                    }),
               );
             },
           );

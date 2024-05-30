@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:adella_kitchen/theme/color.dart';
 import 'package:flutter/material.dart';
 

@@ -55,50 +55,52 @@ class ExploreView extends GetView<ExploreController> {
               indicatorSize: TabBarIndicatorSize.label,
             ),
           ),
-          body: TabBarView(children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                ),
-                itemCount: controller.myProducts.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return SizedBox.expand(
-                    child: CardProduct(
-                      width: double.infinity,
-                      height: 200,
-                      elevation: 3,
-                      heightImage: 100,
-                      borderRadius: 4,
-                      imageProvider: NetworkImage(
-                          controller.myProducts[index]["imageUrl"]),
-                      title:
-                          _title(title: controller.myProducts[index]["name"]),
-                      description: _content(
-                        harga: 15000,
-                        color: myColor().primaryColor,
+          body: SafeArea(
+            child: TabBarView(children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                  ),
+                  itemCount: controller.myProducts.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return SizedBox.expand(
+                      child: CardProduct(
+                        width: double.infinity,
+                        height: 200,
+                        elevation: 3,
+                        heightImage: 100,
+                        borderRadius: 4,
+                        imageProvider: NetworkImage(
+                            controller.myProducts[index]["imageUrl"]),
+                        title:
+                            _title(title: controller.myProducts[index]["name"]),
+                        description: _content(
+                          harga: 15000,
+                          color: myColor().primaryColor,
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-            const Center(
-              child: Text('Makanan'),
-            ),
-            const Center(
-              child: Text('Kotakan'),
-            ),
-            const Center(
-              child: Text('Prasmanan'),
-            ),
-            const Center(
-              child: Text('Jajanan'),
-            ),
-          ]),
+              const Center(
+                child: Text('Makanan'),
+              ),
+              const Center(
+                child: Text('Kotakan'),
+              ),
+              const Center(
+                child: Text('Prasmanan'),
+              ),
+              const Center(
+                child: Text('Jajanan'),
+              ),
+            ]),
+          ),
         ));
   }
 }

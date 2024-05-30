@@ -111,7 +111,15 @@ class CartController extends GetxController {
   void updateItemPrice(int id, double newPrice) {
     var index = cartItems.indexWhere((item) => item.id == id);
     if (index != -1) {
-      cartItems[index].price = newPrice; // Update price of the item
+      var oldItem = cartItems[index];
+      cartItems[index] = CartItem(
+        id: oldItem.id,
+        name: oldItem.name,
+        imageUrl: oldItem.imageUrl,
+        price: newPrice, // Update price of the item
+        quantity: oldItem.quantity,
+        isSelected: oldItem.isSelected,
+      );
       hitungTotalHarga(); // Recalculate total harga
     }
   }
@@ -129,18 +137,20 @@ class CartController extends GetxController {
 
 // Method to update the quantity of an item in the cart
   void updateQuantity(int id, int quantity) {
+    print('Updating quantity for item $id to $quantity'); // Debugging
+    print('Type of quantity: ${quantity.runtimeType}'); // Debugging
     var index = cartItems.indexWhere((item) => item.id == id);
     if (index != -1) {
-      var item = cartItems[index];
+      var oldItem = cartItems[index];
       cartItems[index] = CartItem(
-        id: item.id,
-        name: item.name,
-        imageUrl: item.imageUrl,
-        price: item.price,
+        id: oldItem.id,
+        name: oldItem.name,
+        imageUrl: oldItem.imageUrl,
+        price: oldItem.price,
         quantity: quantity,
-        isSelected: item.isSelected,
+        isSelected: oldItem.isSelected,
       );
-      updateTotalPrice();
+      hitungTotalHarga();
     }
   }
 
