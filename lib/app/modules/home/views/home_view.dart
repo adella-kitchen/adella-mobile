@@ -18,12 +18,7 @@ class HomeView extends GetView<HomeController> {
   HomeView({super.key});
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => HomeController());
-
-    List<Map<String, dynamic>> myProducts = List.generate(
-      10,
-      (index) => {"id": index + 1, "name": "Product ${index + 1}"},
-    );
+    Get.lazyPut(() => HomeController());    
 
     return Scaffold(
         body: SingleChildScrollView(
