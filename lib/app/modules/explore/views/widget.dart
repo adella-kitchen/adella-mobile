@@ -121,7 +121,7 @@ class CardProduct extends StatelessWidget {
                   image: imageProvider,
                   width: width,
                   height: heightImage,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
               Flexible(
