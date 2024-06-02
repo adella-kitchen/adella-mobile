@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class TitleCard extends StatelessWidget {
   final String text;
   final IconData icon;
+  final Widget actionButton;
   final String? textLeading;
   final IconData? iconLeading;
   final IconData? iconButton;
@@ -12,6 +13,7 @@ class TitleCard extends StatelessWidget {
       {super.key, // Ubah super.key menjadi Key? key
       required this.text,
       required this.icon,
+      required this.actionButton,
       this.textLeading,
       this.iconLeading,
       this.iconButton}); // Panggil superclass constructor dengan parameter key
