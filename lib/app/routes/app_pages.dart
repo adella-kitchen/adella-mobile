@@ -1,3 +1,5 @@
+import 'package:adella_kitchen/app/modules/profile/bindings/cek_riwayat_pesanan_binding.dart';
+import 'package:adella_kitchen/app/modules/profile/views/cek_riwayat_pesanan_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/cart/bindings/cart_binding.dart';
@@ -23,8 +25,8 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-  
-  static const INITIAL = Routes.SPLASH_SCREEN;
+
+  static const INITIAL = Routes.PROFILE;
 
   static final routes = [
     GetPage(
@@ -44,7 +46,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SPLASH_SCREEN,
-      page: () =>  SplashScreenView(),
+      page: () => SplashScreenView(),
       binding: SplashScreenBinding(),
     ),
     GetPage(
@@ -67,10 +69,16 @@ class AppPages {
       page: () => const ProfileView(),
       binding: ProfileBinding(),
     ),
+    
     GetPage(
       name: _Paths.ONBOARDING,
       page: () => const OnboardingView(),
       binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: _Paths.CEK_RIWAYAT_PESANAN,
+      page: () => CekRiwayatPesananView(),
+      binding: CekRiwayatPesananBinding(),
     ),
   ];
 }
