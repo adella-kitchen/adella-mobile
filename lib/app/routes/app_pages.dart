@@ -20,13 +20,19 @@ import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
 import '../modules/verif_email/bindings/verif_email_binding.dart';
 import '../modules/verif_email/views/verif_email_view.dart';
+import '../modules/starter/bindings/starter_binding.dart';
+import '../modules/starter/views/starter_view.dart';
+import '../modules/step_page/bindings/step_page_binding.dart';
+import '../modules/step_page/views/step_page_view.dart';
+
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH_SCREEN;
+  static const INITIAL = Routes.DASHBOARD;
+
 
   static final routes = [
     GetPage(
@@ -78,6 +84,17 @@ class AppPages {
       name: _Paths.VERIF_EMAIL,
       page: () => const VerifEmailView(),
       binding: VerifEmailBinding(),
+      ),
+    GetPage(
+      name: _Paths.STARTER,
+      page: () => const StarterView(),
+      binding: StarterBinding(),
+    ),
+    GetPage(
+      name: _Paths.STEP_PAGE,
+      page: () => const StepPageView(),
+      binding: StepPageBinding(),
+
     ),
   ];
 }

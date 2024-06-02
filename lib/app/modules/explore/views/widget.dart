@@ -38,24 +38,22 @@ class CustomCard extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      description,
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    description,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ],
               ),
             ),
           ),
@@ -81,6 +79,7 @@ class CardProduct extends StatelessWidget {
     this.color = Colors.white,
     this.tagSpacing,
     this.tagRunSpacing,
+    this.ontap,
     this.elevation = 0, // Default elevation
   });
 
@@ -97,45 +96,49 @@ class CardProduct extends StatelessWidget {
   final Widget? title;
   final Widget? description;
   final Widget? footer;
+  final Function()? ontap;
   final double elevation; // Elevation value
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: elevation,
-      borderRadius: BorderRadius.circular(borderRadius),
-      color: color,
-      child: SizedBox(
-        width: width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(borderRadius),
-                topRight: Radius.circular(borderRadius),
-              ),
-              child: Image(
-                image: imageProvider,
-                width: width,
-                height: heightImage,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Flexible(
-              child: Padding(
-                padding: contentPadding ?? EdgeInsets.zero,
-                child: ImageCardContent(
-                  tags: tags,
-                  title: title,
-                  footer: footer,
-                  description: description,
-                  tagSpacing: tagSpacing,
-                  tagRunSpacing: tagRunSpacing,
+    return GestureDetector(
+      onTap: ontap,
+      child: Material(
+        elevation: elevation,
+        borderRadius: BorderRadius.circular(borderRadius),
+        color: color,
+        child: SizedBox(
+          width: width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(borderRadius),
+                  topRight: Radius.circular(borderRadius),
+                ),
+                child: Image(
+                  image: imageProvider,
+                  width: width,
+                  height: heightImage,
+                  fit: BoxFit.contain,
                 ),
               ),
-            ),
-          ],
+              Flexible(
+                child: Padding(
+                  padding: contentPadding ?? EdgeInsets.zero,
+                  child: ImageCardContent(
+                    tags: tags,
+                    title: title,
+                    footer: footer,
+                    description: description,
+                    tagSpacing: tagSpacing,
+                    tagRunSpacing: tagRunSpacing,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

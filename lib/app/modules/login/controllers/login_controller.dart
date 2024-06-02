@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:adella_kitchen/app/data/api/api.dart';
 import 'package:adella_kitchen/app/routes/app_pages.dart';
 import 'package:adella_kitchen/theme/widget/app_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,6 @@ class LoginController extends GetxController {
   late TextEditingController passwordController;
 
   var isLogin = false.obs;
-  var ip = '192.168.1.5';
   var isLoading = false.obs;
 
   void initEmailController() {
@@ -41,10 +41,8 @@ class LoginController extends GetxController {
   Future<void> login(String email, String password) async {
     isLoading.value = true;
 
-    String apiUrl = 'http://$ip:8000/api/login';
-
     try {
-      final response = await http.post(Uri.parse(apiUrl), body: {
+      final response = await http.post(Uri.parse(Api().login), body: {
         'email': email,
         'password': password,
       });
