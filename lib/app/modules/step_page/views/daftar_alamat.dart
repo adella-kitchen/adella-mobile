@@ -91,7 +91,6 @@ class DaftarAlamat extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.black, width: 2.0),
                   borderRadius: BorderRadius.circular(5),
                 ),
-                prefixIcon: Icon(Icons.home),
               ),
             ),
           ),
