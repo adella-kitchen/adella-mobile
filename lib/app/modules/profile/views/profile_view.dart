@@ -3,11 +3,11 @@ import 'package:adella_kitchen/app/modules/profile/views/widget.dart';
 import 'package:adella_kitchen/app/routes/app_pages.dart';
 import 'package:adella_kitchen/theme/app_theme.dart';
 import 'package:adella_kitchen/theme/color.dart';
-import 'package:adella_kitchen/theme/widget/app_widget.dart';
+// import 'package:adella_kitchen/theme/widget/app_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
+// import 'package:get/get_core/get_core.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 import '../controllers/profile_controller.dart';
@@ -36,11 +36,11 @@ class ProfileView extends GetView<ProfileController> {
                 child: PopupMenuButton<int>(
                   onSelected: (int result) {
                     // Handle menu item selection
-                    print('Menu item $result selected');
+                    Text('Menu item $result selected');
                   },
-                  offset: Offset(0, 50),
+                  offset: const Offset(0, 50),
                   itemBuilder: (BuildContext context) => <PopupMenuEntry<int>>[
-                    PopupMenuItem<int>(
+                    const PopupMenuItem<int>(
                       value: 1,
                       child: Row(
                         children: [
@@ -65,7 +65,7 @@ class ProfileView extends GetView<ProfileController> {
         ],
         backgroundColor: myColor().primaryColor,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 14),
         child: Center(
           child: Column(
@@ -94,8 +94,9 @@ class ProfileView extends GetView<ProfileController> {
               ),
               Container(
                 color: const Color.fromARGB(255, 246, 245, 245),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 21),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 21),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -104,14 +105,13 @@ class ProfileView extends GetView<ProfileController> {
                         icon: Bootstrap.clipboard2_check_fill,
                         textLeading: 'Cek riwayat pesanan',
                         iconLeading: Icons.arrow_forward_ios_outlined,
-                        // onLeadingPressed: () {
-                        //   Get.toNamed(Routes.CEK_RIWAYAT_PESANAN);
-                        // },
+                        onPressed: () =>
+                            Get.toNamed(Routes.CEK_RIWAYAT_PESANAN),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
@@ -125,16 +125,16 @@ class ProfileView extends GetView<ProfileController> {
                                 width: 30,
                               ),
                               SizedBox(
-                                width: 96, // Adjust this width as needed
+                                width: 85, // Adjust this width as needed
                                 child: Text(
                                   'Pesanan Dalam Proses',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 12, // Set the font size as needed
+                                    fontSize: 11, // Set the font size as needed
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 50),
+                              SizedBox(height: 30),
                             ],
                           ),
                           SizedBox(width: 30),
@@ -149,16 +149,16 @@ class ProfileView extends GetView<ProfileController> {
                                 width: 30,
                               ),
                               SizedBox(
-                                width: 95, // Adjust this width as needed
+                                width: 85, // Adjust this width as needed
                                 child: Text(
                                   'Pesanan Dikirim',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 12, // Set the font size as needed
+                                    fontSize: 11, // Set the font size as needed
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 50),
+                              SizedBox(height: 30),
                             ],
                           ),
                           SizedBox(width: 30),
@@ -173,43 +173,48 @@ class ProfileView extends GetView<ProfileController> {
                                 width: 30,
                               ),
                               SizedBox(
-                                width: 95, // Adjust this width as needed
+                                width: 85, // Adjust this width as needed
                                 child: Text(
                                   'Pesanan Diterima',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 12, // Set the font size as needed
+                                    fontSize: 11, // Set the font size as needed
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 50),
+                              SizedBox(height: 30),
                             ],
                           ),
                         ],
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       TitleCard(
-                        text: 'Pengaturan Akun',
+                        text: 'Informasi Profil',
                         icon: Bootstrap.person_fill,
-                        iconButton: Icons.arrow_forward_ios_outlined,
+                        onPressed: () {
+                          Get.toNamed(Routes.PENGATURAN_AKUN);
+                        },
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TitleCard(
-                        text: 'Pesanan',
-                        icon: Bootstrap.cart_check_fill,
-                        textLeading: 'Cek riwayat transaksi',
-                        iconLeading: Icons.arrow_forward_ios_outlined,
-                      ),
-                      SizedBox(
-                        height: 20,
+                      const SizedBox(
+                        height: 30,
                       ),
                       TitleCard(
+                        text: 'Ubah Kata sandi',
+                        icon: Bootstrap.lock_fill,
+                        onPressed: () {
+                          Get.toNamed(Routes.UBAH_KATA_SANDI);
+                        },
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const TitleCard(
                         text: 'Pengaturan alamat',
-                        icon: Bootstrap.geo_alt_fill,
-                        iconButton: Icons.arrow_forward_ios_outlined,
-                      )
+                        icon: Icons.location_pin,
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
                     ],
                   ),
                 ),

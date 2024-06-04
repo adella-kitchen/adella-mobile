@@ -1,5 +1,8 @@
-import 'package:adella_kitchen/app/modules/profile/bindings/cek_riwayat_pesanan_binding.dart';
+import 'package:adella_kitchen/app/modules/profile/controllers/pengaturan_akun_controller.dart';
+import 'package:adella_kitchen/app/modules/profile/controllers/ubah_kata_sandi_contoller.dart';
 import 'package:adella_kitchen/app/modules/profile/views/cek_riwayat_pesanan_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/pengaturan_akun_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/ubah_kata_sandi_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/cart/bindings/cart_binding.dart';
@@ -46,7 +49,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SPLASH_SCREEN,
-      page: () => SplashScreenView(),
+      page: () => const SplashScreenView(),
       binding: SplashScreenBinding(),
     ),
     GetPage(
@@ -69,7 +72,6 @@ class AppPages {
       page: () => const ProfileView(),
       binding: ProfileBinding(),
     ),
-    
     GetPage(
       name: _Paths.ONBOARDING,
       page: () => const OnboardingView(),
@@ -78,7 +80,17 @@ class AppPages {
     GetPage(
       name: _Paths.CEK_RIWAYAT_PESANAN,
       page: () => CekRiwayatPesananView(),
-      binding: CekRiwayatPesananBinding(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.UBAH_KATA_SANDI,
+      page: () => UbahKataSandiView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGATURAN_AKUN,
+      page: () => PengaturanAkunView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

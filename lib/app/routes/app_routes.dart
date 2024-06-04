@@ -13,6 +13,8 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const ONBOARDING = _Paths.ONBOARDING;
   static const CEK_RIWAYAT_PESANAN = _Paths.CEK_RIWAYAT_PESANAN;
+  static const UBAH_KATA_SANDI = _Paths.UBAH_KATA_SANDI;
+  static const PENGATURAN_AKUN = _Paths.PENGATURAN_AKUN;
 }
 
 abstract class _Paths {
@@ -27,4 +29,6 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const ONBOARDING = '/onboarding';
   static const CEK_RIWAYAT_PESANAN = '/cek-riwayat-pesanan';
+  static const UBAH_KATA_SANDI = '/ubah-kata-sandi';
+  static const PENGATURAN_AKUN = '/pengaturan-akun';
 }

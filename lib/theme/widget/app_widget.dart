@@ -93,7 +93,12 @@ class TfSearch extends StatelessWidget {
   final void Function()? onTap;
   final BorderSide borderSide;
 
-  const TfSearch({super.key, required this.hint, required this.controller, required this.borderSide, this.onTap});
+  const TfSearch(
+      {super.key,
+      required this.hint,
+      required this.controller,
+      required this.borderSide,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -109,9 +114,7 @@ class TfSearch extends StatelessWidget {
           hintText: hint,
           hintStyle: const TextStyle(color: Colors.grey),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: borderSide
-          ),
+              borderRadius: BorderRadius.circular(10), borderSide: borderSide),
           prefixIcon: const Icon(
             Ionicons.search,
             color: Colors.grey,
@@ -280,19 +283,6 @@ class BtnPrimary extends StatelessWidget {
         height: 50,
         width: double.infinity,
         child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
-              ),
-            ),
-            minimumSize: MaterialStateProperty.all(
-              const Size(double.infinity, 50),
-            ),
-            backgroundColor: MaterialStateProperty.all(
-              myColor().primaryColor,
-            ),
-          ),
           onPressed: onPressed,
           child: Text(
             btnText,
