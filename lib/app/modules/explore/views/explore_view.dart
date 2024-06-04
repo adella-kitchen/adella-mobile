@@ -55,51 +55,70 @@ class ExploreView extends GetView<ExploreController> {
               indicatorSize: TabBarIndicatorSize.label,
             ),
           ),
-          body: TabBarView(children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                ),
-                itemCount: controller.myProducts.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return SizedBox.expand(
-                    child: CardProduct(
-                      width: double.infinity,
-                      height: 200,
-                      elevation: 3,
-                      heightImage: 100,
-                      borderRadius: 4,
-                      imageProvider: NetworkImage(
-                          controller.myProducts[index]["imageUrl"]),
-                      title:
-                          _title(title: controller.myProducts[index]["name"]),
-                      description: _content(
-                        harga: 15000,
-                        color: myColor().primaryColor,
-                      ),
-                    ),
-                  );
-                },
+          body: SafeArea(
+            child: TabBarView(children: [
+              //kategori semua
+              CardProductView(controller: controller),
+              const Center(
+                child: Text('Makanan'),
+              ),
+              const Center(
+                child: Text('Kotakan'),
+              ),
+              const Center(
+                child: Text('Prasmanan'),
+              ),
+              const Center(
+                child: Text('Jajanan'),
+              ),
+            ]),
+          ),
+        ));
+  }
+}
+
+class CardProductView extends StatelessWidget {
+  const CardProductView({
+    super.key,
+    required this.controller,
+  });
+
+  final ExploreController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+        ),
+        itemCount: controller.myMenu.length,
+        itemBuilder: (BuildContext context, int index) {
+          final menu = controller.myMenu[index];
+          return SizedBox.expand(
+            child: CardProduct(
+              ontap: () {
+                print(menu.idMenu);
+              },
+              width: double.infinity,
+              height: 200,
+              elevation: 3,
+              heightImage: 100,
+              borderRadius: 4,
+              imageProvider: NetworkImage(menu.variantImg),
+              title: _title(title: menu.menuName),
+              description: _content(
+                harga: menu.priceMenu,
+                color: myColor().primaryColor,
               ),
             ),
-            const Center(
-              child: Text('Makanan'),
-            ),
-            const Center(
-              child: Text('Kotakan'),
-            ),
-            const Center(
-              child: Text('Prasmanan'),
-            ),
-            const Center(
-              child: Text('Jajanan'),
-            ),
-          ]),
-        ));
+          );
+        },
+      ),
+    );
   }
 }
 
@@ -107,7 +126,7 @@ Widget _title({Color? color, required String title}) {
   return Text(
     title,
     maxLines: 2,
-    style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.w500),
+    style: TextStyle(fontSize: 14, color: color, fontWeight: FontWeight.w500),
   );
 }
 
@@ -119,7 +138,7 @@ Widget _content({Color? color, required int harga}) {
       Text(
         controller.formatRupiah(harga),
         style:
-            TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.bold),
+            TextStyle(color: color, fontSize: 14, fontWeight: FontWeight.bold),
       ),
       const SizedBox(
         height: 5,

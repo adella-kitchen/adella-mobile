@@ -2,7 +2,7 @@ class CartItem {
   final int id;
   final String name;
   final String imageUrl;
-   double price;
+  final double price;
   final int quantity;
   bool isSelected;
 

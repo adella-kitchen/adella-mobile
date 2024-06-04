@@ -1,16 +1,18 @@
-class Menu {
-  final int idMenu;
-  final String menuCategory;
-  final String menuName;
-  final String descMenu;
-  final int priceMenu;
+class AllMenu {
+  int idMenu;
+  String menuCategory;
+  String menuName;
+  String? descMenu;
+  int priceMenu;
+  String variantImg;
 
-  Menu({
+  AllMenu({
     required this.idMenu,
     required this.menuCategory,
     required this.menuName,
-    required this.descMenu,
+    this.descMenu,
     required this.priceMenu,
+    required this.variantImg,
   });
 }
 

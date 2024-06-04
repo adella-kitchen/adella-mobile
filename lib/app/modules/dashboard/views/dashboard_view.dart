@@ -18,15 +18,16 @@ class DashboardView extends StatelessWidget {
       final CartController cartController = Get.put(CartController());
       return Scaffold(
         body: SafeArea(
-            child: IndexedStack(
-          index: controller.tabIndex,
-          children: [
-            HomeView(),
-            ExploreView(),
-            const CartView(),
-            const ProfileView()
-          ],
-        )),
+          child: IndexedStack(
+            index: controller.tabIndex,
+            children: [
+              HomeView(),
+              ExploreView(),
+              const CartView(),
+              const ProfileView()
+            ],
+          ),
+        ),
         bottomNavigationBar: Obx(() {
           return BottomNavigationBar(
             unselectedItemColor: Colors.grey,

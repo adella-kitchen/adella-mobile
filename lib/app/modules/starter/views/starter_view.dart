@@ -1,9 +1,5 @@
-import 'package:adella_kitchen/app/modules/home/views/widget.dart';
-import 'package:adella_kitchen/app/modules/step_page/views/step_page_view.dart';
 import 'package:adella_kitchen/app/routes/app_pages.dart';
-import 'package:adella_kitchen/theme/widget/app_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/xml_templates.dart';
 
 import 'package:get/get.dart';
 
