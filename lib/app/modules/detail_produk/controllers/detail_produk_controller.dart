@@ -7,7 +7,6 @@ class DetailProdukController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     idMenu = Get.arguments;
   }
