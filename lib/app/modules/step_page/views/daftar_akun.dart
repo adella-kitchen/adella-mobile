@@ -37,6 +37,24 @@ class _DaftarAkunState extends State<DaftarAkun> {
   bool showErrorPassword = false;
   bool showErrorConfirmPassword = false;
 
+  // Variabel untuk menentukan apakah password sedang ditampilkan atau disembunyikan
+  bool isPasswordVisible = false;
+  bool isConfirmPasswordVisible = false;
+
+  // Method untuk mengubah status tampilan password
+  void togglePasswordVisibility() {
+    setState(() {
+      isPasswordVisible = !isPasswordVisible;
+    });
+  }
+
+  // Method untuk mengubah status tampilan konfirmasi password
+  void toggleConfirmPasswordVisibility() {
+    setState(() {
+      isConfirmPasswordVisible = !isConfirmPasswordVisible;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -168,11 +186,19 @@ class _DaftarAkunState extends State<DaftarAkun> {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   prefixIcon: Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: togglePasswordVisibility,
+                  ),
                   isDense: true,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 12, horizontal: 10),
                 ),
-                obscureText: true,
+                obscureText: !isPasswordVisible,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     setState(() {
@@ -180,7 +206,7 @@ class _DaftarAkunState extends State<DaftarAkun> {
                     });
                     return 'Kata sandi tidak boleh kosong';
                   }
-                  if (value.length < 6) {
+                                  if (value.length < 6) {
                     setState(() {
                       showErrorPassword = true;
                     });
@@ -215,11 +241,19 @@ class _DaftarAkunState extends State<DaftarAkun> {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   prefixIcon: Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      isConfirmPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: toggleConfirmPasswordVisibility,
+                  ),
                   isDense: true,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 12, horizontal: 10),
                 ),
-                obscureText: true,
+                obscureText: !isConfirmPasswordVisible,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     setState(() {
@@ -282,3 +316,4 @@ class _DaftarAkunState extends State<DaftarAkun> {
     );
   }
 }
+
