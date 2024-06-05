@@ -1,4 +1,3 @@
-import 'package:adella_kitchen/theme/color.dart';
 import 'package:flutter/material.dart';
 
 class TitleCard extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:adella_kitchen/app/modules/profile/controllers/pengaturan_akun_controller.dart';
 import 'package:adella_kitchen/app/modules/profile/views/widget.dart';
-import 'package:adella_kitchen/theme/color.dart';
+// import 'package:adella_kitchen/theme/color.dart';
 // import 'package:adella_kitchen/theme/widget/app_widget.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
@@ -84,7 +84,7 @@ class PengaturanAkunView extends StatelessWidget {
                   hintText: 'isi email',
                   namaController: emailController),
               const SizedBox(height: 50),
-              const btnPrimaryProfile(btnText: 'Edit Profile'),
+              const BtnPrimaryProfile(btnText: 'Edit Profile'),
             ],
           ),
         ),
