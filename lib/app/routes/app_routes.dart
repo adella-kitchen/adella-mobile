@@ -18,7 +18,7 @@ abstract class Routes {
   static const STEP_PAGE = _Paths.STEP_PAGE;
   static const VERIF_NOTELF = _Paths.VERIF_NOTELF;
   static const VERIF_NOTELP = _Paths.VERIF_NOTELP;
-
+  static const DETAIL_PRODUK = _Paths.DETAIL_PRODUK;
 }
 
 abstract class _Paths {
@@ -37,5 +37,5 @@ abstract class _Paths {
   static const STEP_PAGE = '/step-page';
   static const VERIF_NOTELF = '/verif-notelf';
   static const VERIF_NOTELP = '/verif-notelp';
-
+  static const DETAIL_PRODUK = '/detail-produk';
 }

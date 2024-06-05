@@ -69,7 +69,8 @@ class HomeView extends GetView<HomeController> {
                   TfSearch(
                     hint: 'Cari Menu Makanan',
                     controller: searchController,
-                    borderSide: BorderSide.none,
+                    borderSide: BorderSide.none,                    
+                    onTap: () => Get.toNamed(Routes.EXPLORE),
                   ),
                   const SizedBox(height: 10),
                 ],

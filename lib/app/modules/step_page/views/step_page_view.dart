@@ -17,7 +17,7 @@ class StepPageView extends GetView<StepPageController> {
         () => Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(primary: myColor().primaryColor),
-           textTheme: Theme.of(context).textTheme.copyWith(
+            textTheme: Theme.of(context).textTheme.copyWith(
               bodyLarge: TextStyle(color: Colors.black),
             ),
           ),
@@ -34,6 +34,7 @@ class StepPageView extends GetView<StepPageController> {
             onStepCancel: () {
               controller.previousStep();
             },
+            // Komentar bagian ini untuk menonaktifkan fungsi langkah pada klik header
             onStepTapped: (step) {
               controller.goToStep(step);
             },

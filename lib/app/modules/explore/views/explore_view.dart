@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/explore_controller.dart';
 
 class ExploreView extends GetView<ExploreController> {
@@ -102,6 +103,7 @@ class CardProductView extends StatelessWidget {
             child: CardProduct(
               ontap: () {
                 print(menu.idMenu);
+                Get.toNamed(Routes.DETAIL_PRODUK, arguments: menu.idMenu);
               },
               width: double.infinity,
               height: 200,
