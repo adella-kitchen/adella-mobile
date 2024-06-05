@@ -15,6 +15,7 @@ abstract class Routes {
   static const CEK_RIWAYAT_PESANAN = _Paths.CEK_RIWAYAT_PESANAN;
   static const UBAH_KATA_SANDI = _Paths.UBAH_KATA_SANDI;
   static const PENGATURAN_AKUN = _Paths.PENGATURAN_AKUN;
+  static const PENGATURAN_ALAMAT = _Paths.PENGATURAN_ALAMAT;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const CEK_RIWAYAT_PESANAN = '/cek-riwayat-pesanan';
   static const UBAH_KATA_SANDI = '/ubah-kata-sandi';
   static const PENGATURAN_AKUN = '/pengaturan-akun';
+  static const PENGATURAN_ALAMAT = '/pengaturan-alamat';
 }

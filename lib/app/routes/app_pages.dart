@@ -2,6 +2,7 @@ import 'package:adella_kitchen/app/modules/profile/controllers/pengaturan_akun_c
 import 'package:adella_kitchen/app/modules/profile/controllers/ubah_kata_sandi_contoller.dart';
 import 'package:adella_kitchen/app/modules/profile/views/cek_riwayat_pesanan_view.dart';
 import 'package:adella_kitchen/app/modules/profile/views/pengaturan_akun_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/pengaturan_alamat_view.dart';
 import 'package:adella_kitchen/app/modules/profile/views/ubah_kata_sandi_view.dart';
 import 'package:get/get.dart';
 
@@ -79,7 +80,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CEK_RIWAYAT_PESANAN,
-      page: () => CekRiwayatPesananView(),
+      page: () => const CekRiwayatPesananView(),
       binding: ProfileBinding(),
     ),
     GetPage(
@@ -90,6 +91,11 @@ class AppPages {
     GetPage(
       name: _Paths.PENGATURAN_AKUN,
       page: () => PengaturanAkunView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGATURAN_ALAMAT,
+      page: () => const PengaturanAlamatView(),
       binding: ProfileBinding(),
     ),
   ];
