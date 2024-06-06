@@ -10,6 +10,8 @@ import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/input_pass/bindings/input_pass_binding.dart';
+import '../modules/input_pass/views/input_pass_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
@@ -32,7 +34,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DASHBOARD;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -99,6 +101,11 @@ class AppPages {
       name: _Paths.DETAIL_PRODUK,
       page: () => DetailProdukView(),
       binding: DetailProdukBinding(),
+    ),
+    GetPage(
+      name: _Paths.INPUT_PASS,
+      page: () => const InputPassView(),
+      binding: InputPassBinding(),
     ),
   ];
 }

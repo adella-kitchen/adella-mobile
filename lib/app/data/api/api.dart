@@ -1,6 +1,6 @@
 class Api {
 
-  var ip = '192.168.1.11';
+  var ip = '192.168.100.7';
   String get url => 'http://$ip:8000/api';
 
   //get method
