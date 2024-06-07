@@ -1,8 +1,5 @@
 import 'package:get/get.dart';
 
-class ProfileController extends GetxController {
+class UbahKataSandiContoller extends GetxController {
   //TODO: Implement ProfileController
-
- 
-
 }

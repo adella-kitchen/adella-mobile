@@ -2,10 +2,10 @@ name: adella_kitchen
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
-  sdk: '>=3.2.6 <4.0.0'
+environment:
+  sdk: ">=3.2.6 <4.0.0"
 
-dependencies: 
+dependencies:
   ionicons: 0.2.2
   animated_splash_screen: 1.3.0
   cupertino_icons: ^1.0.2
@@ -22,29 +22,31 @@ dependencies:
   input_quantity: 2.3.4
   phone_text_field: 0.0.7
   pinput: 4.0.0
-
-
-dev_dependencies: 
-  flutter_lints: ^3.0.2
-  flutter_test: 
+  get_cli: ^1.8.1
+  flutter:
     sdk: flutter
 
-flutter_launcher_icons: 
+dev_dependencies:
+  flutter_lints: ^3.0.2
+  flutter_test:
+    sdk: flutter
+
+flutter_launcher_icons:
   android: launcher_icon
   image_path: assets/img/icon_launcher.png
-  flutter: 
+  flutter:
     sdk: flutter
   ios: true
 
-flutter: 
-  assets: 
+flutter:
+  assets:
     - assets/img/
-  fonts: 
+    # - assets/img/pesanan_dalam_proses.png
+  fonts:
     - family: Poppins
-      fonts: 
+      fonts:
         - asset: fonts/Poppins-Light.ttf
         - asset: fonts/Poppins-Medium.ttf
         - asset: fonts/Poppins-Regular.ttf
         - asset: fonts/Poppins-SemiBold.ttf
   uses-material-design: true
-
