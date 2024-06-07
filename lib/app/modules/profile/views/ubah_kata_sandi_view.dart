@@ -1,5 +1,6 @@
 import 'package:adella_kitchen/app/modules/profile/controllers/ubah_kata_sandi_contoller.dart';
 import 'package:adella_kitchen/app/modules/profile/views/widget.dart';
+import 'package:adella_kitchen/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -85,9 +86,14 @@ class UbahKataSandiView extends StatelessWidget {
               ),
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.bottomCenter,
-            child: BtnPrimaryProfile(btnText: 'Ubah Kata Sandi'),
+            child: BtnPrimaryProfile(
+              btnText: 'Ubah Kata Sandi',
+              onPressed: () {
+                Get.toNamed(Routes.UBAH_KATA_SANDI);
+              },
+            ),
           ),
         ],
       ),

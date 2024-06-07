@@ -36,7 +36,6 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DASHBOARD;
 
   static final routes = [
     GetPage(
@@ -103,7 +102,8 @@ class AppPages {
       name: _Paths.PENGATURAN_ALAMAT,
       page: () => const PengaturanAlamatView(),
       binding: ProfileBinding(),
-     GetPage(
+    ),
+    GetPage(
       name: _Paths.VERIF_EMAIL,
       page: () => const VerifEmailView(),
       binding: VerifEmailBinding(),
