@@ -103,7 +103,7 @@ class AppPages {
       page: () => const PengaturanAlamatView(),
       binding: ProfileBinding(),
     ),
-    GetPage(
+     GetPage(
       name: _Paths.VERIF_EMAIL,
       page: () => const VerifEmailView(),
       binding: VerifEmailBinding(),
