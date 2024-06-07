@@ -13,6 +13,10 @@
 
          This Theme is only used starting with V2 of Flutter's Android embedding. -->
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
-        <item name="android:windowBackground">?android:colorBackground</item>
-    </style>
+    <item name="android:windowBackground">?android:colorBackground</item>
+    <!-- Tambahkan atribut berikut untuk membuat status bar dan navigation bar transparan -->
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowTranslucentNavigation">true</item>
+</style>
+
 </resources>

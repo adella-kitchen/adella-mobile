@@ -16,6 +16,13 @@ abstract class Routes {
   static const UBAH_KATA_SANDI = _Paths.UBAH_KATA_SANDI;
   static const PENGATURAN_AKUN = _Paths.PENGATURAN_AKUN;
   static const PENGATURAN_ALAMAT = _Paths.PENGATURAN_ALAMAT;
+
+  static const VERIF_EMAIL = _Paths.VERIF_EMAIL;
+  static const STARTER = _Paths.STARTER;
+  static const STEP_PAGE = _Paths.STEP_PAGE;
+  static const VERIF_NOTELF = _Paths.VERIF_NOTELF;
+  static const VERIF_NOTELP = _Paths.VERIF_NOTELP;
+  static const DETAIL_PRODUK = _Paths.DETAIL_PRODUK;
 }
 
 abstract class _Paths {
@@ -33,4 +40,10 @@ abstract class _Paths {
   static const UBAH_KATA_SANDI = '/ubah-kata-sandi';
   static const PENGATURAN_AKUN = '/pengaturan-akun';
   static const PENGATURAN_ALAMAT = '/pengaturan-alamat';
+  static const VERIF_EMAIL = '/verif-email';
+  static const STARTER = '/starter';
+  static const STEP_PAGE = '/step-page';
+  static const VERIF_NOTELF = '/verif-notelf';
+  static const VERIF_NOTELP = '/verif-notelp';
+  static const DETAIL_PRODUK = '/detail-produk';
 }

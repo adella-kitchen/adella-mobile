@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:adella_kitchen/app/data/api/api.dart';
 import 'package:adella_kitchen/app/routes/app_pages.dart';
+import 'package:adella_kitchen/theme/widget/app_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,7 +12,6 @@ class LoginController extends GetxController {
   late TextEditingController passwordController;
 
   var isLogin = false.obs;
-  var ip = '192.168.1.108';
   var isLoading = false.obs;
 
   void initEmailController() {
@@ -40,10 +41,8 @@ class LoginController extends GetxController {
   Future<void> login(String email, String password) async {
     isLoading.value = true;
 
-    String apiUrl = 'http://$ip:8000/api/login';
-
     try {
-      final response = await http.post(Uri.parse(apiUrl), body: {
+      final response = await http.post(Uri.parse(Api().login), body: {
         'email': email,
         'password': password,
       });
@@ -60,15 +59,15 @@ class LoginController extends GetxController {
         Get.offNamed(Routes.DASHBOARD);
 
         final successMessage = responseData['message'];
-        Get.snackbar('Success', successMessage);
+        CustomSnackBar.showSuccess('Berhasil Login', successMessage);
       } else {
         final responseData = json.decode(response.body);
         final errorMessage = responseData['message'];
-        Get.snackbar('Gagal Login', errorMessage);
+        CustomSnackBar.showWarning('Gagal Login', errorMessage);
       }
     } catch (e) {
       print('Error: $e');
-      Get.snackbar('Error', '$e');
+      CustomSnackBar.showError('Error', '$e');
     } finally {
       isLoading.value = false;
     }
