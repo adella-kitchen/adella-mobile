@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginController extends GetxController {
   late TextEditingController emailController;
@@ -76,6 +77,18 @@ class LoginController extends GetxController {
   Future<void> saveToken(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('token', token);
+  }
+
+  Future<void> logingoogle() async {
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    try {
+      var result = await googleSignIn.signIn();
+      print(result);
+      // Di sini Anda bisa menambahkan logika untuk menangani hasil login
+      // seperti navigasi ke halaman selanjutnya atau melakukan autentikasi di backend.
+    } catch (error) {
+      print(error);
+    }
   }
 
   Future<void> checkLoginStatus() async {

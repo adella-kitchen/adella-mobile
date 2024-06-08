@@ -23,6 +23,8 @@ abstract class Routes {
   static const VERIF_NOTELF = _Paths.VERIF_NOTELF;
   static const VERIF_NOTELP = _Paths.VERIF_NOTELP;
   static const DETAIL_PRODUK = _Paths.DETAIL_PRODUK;
+  static const INPUT_PASS = _Paths.INPUT_PASS;
+  static const OTP_EMAIL = _Paths.OTP_EMAIL;
 }
 
 abstract class _Paths {
@@ -46,4 +48,6 @@ abstract class _Paths {
   static const VERIF_NOTELF = '/verif-notelf';
   static const VERIF_NOTELP = '/verif-notelp';
   static const DETAIL_PRODUK = '/detail-produk';
+  static const INPUT_PASS = '/input-pass';
+  static const OTP_EMAIL = '/otp-email';
 }
