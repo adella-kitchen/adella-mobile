@@ -1,3 +1,7 @@
+import 'package:adella_kitchen/app/modules/profile/views/cek_riwayat_pesanan_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/pengaturan_akun_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/pengaturan_alamat_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/ubah_kata_sandi_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/cart/bindings/cart_binding.dart';
@@ -85,6 +89,26 @@ class AppPages {
       binding: OnboardingBinding(),
     ),
     GetPage(
+      name: _Paths.CEK_RIWAYAT_PESANAN,
+      page: () => const CekRiwayatPesananView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.UBAH_KATA_SANDI,
+      page: () => UbahKataSandiView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGATURAN_AKUN,
+      page: () => PengaturanAkunView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGATURAN_ALAMAT,
+      page: () => const PengaturanAlamatView(),
+      binding: ProfileBinding(),
+    ),
+     GetPage(
       name: _Paths.VERIF_EMAIL,
       page: () => const VerifEmailView(),
       binding: VerifEmailBinding(),

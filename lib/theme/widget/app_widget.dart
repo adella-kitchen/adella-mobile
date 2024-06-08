@@ -286,19 +286,6 @@ class BtnPrimary extends StatelessWidget {
         height: 50,
         width: double.infinity,
         child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
-              ),
-            ),
-            minimumSize: MaterialStateProperty.all(
-              const Size(double.infinity, 50),
-            ),
-            backgroundColor: MaterialStateProperty.all(
-              myColor().primaryColor,
-            ),
-          ),
           onPressed: onPressed,
           child: Text(
             btnText,
