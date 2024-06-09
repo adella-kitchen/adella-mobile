@@ -154,7 +154,7 @@ class TfText extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(bottom: 5),
           child: Text(
-            label,                
+            label,
             style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
           ),
         ),
@@ -367,7 +367,11 @@ class CustomSnackBar {
     Get.snackbar(
       title,
       desc,
-      icon: const Icon(Ionicons.checkmark_circle_outline),
+      backgroundColor: const Color.fromARGB(255, 223, 223, 223),
+      icon: const Icon(
+        Ionicons.checkmark_circle_outline,
+        color: Color(0xff198754),
+      ),
       leftBarIndicatorColor: const Color(0xff198754),
       duration: const Duration(seconds: 2),
     );
@@ -378,7 +382,11 @@ class CustomSnackBar {
     String desc,
   ) {
     Get.snackbar(title, desc,
-        icon: const Icon(Ionicons.warning),
+        backgroundColor: const Color.fromARGB(255, 223, 223, 223),
+        icon: const Icon(
+          Ionicons.warning,
+          color: Color(0xffffc107),
+        ),
         leftBarIndicatorColor: const Color(0xffffc107),
         duration: const Duration(seconds: 2));
   }
@@ -388,7 +396,11 @@ class CustomSnackBar {
     String desc,
   ) {
     Get.snackbar(title, desc,
-        icon: const Icon(Ionicons.bug),
+        icon: const Icon(
+          Ionicons.bug,
+          color: Color(0xffdc3545),
+        ),
+        backgroundColor: const Color.fromARGB(255, 223, 223, 223),
         leftBarIndicatorColor: const Color(0xffdc3545),
         duration: const Duration(seconds: 2));
   }
