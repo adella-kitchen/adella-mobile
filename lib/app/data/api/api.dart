@@ -1,6 +1,5 @@
 class Api {
-
-  var ip = '192.168.100.7';
+  var ip = '192.168.1.10';
   String get url => 'http://$ip:8000/api';
 
   //get method
@@ -11,4 +10,14 @@ class Api {
   String menuCategory(String kategori) => '$url/menu/kategori/$kategori';
   String detailMenu(int id) => '$url/menu/$id';
   String get promo => '$url/promo';
+}
+
+class UrlApi extends Api {
+  String getImgMenu(String imgUrl) {
+    return "http://$ip:8000/img/manajemen_menu/$imgUrl";
+  }
+
+  String getImgPromo(String imgUrl) {
+    return "http://$ip:8000/img/promo/$imgUrl";
+  }
 }

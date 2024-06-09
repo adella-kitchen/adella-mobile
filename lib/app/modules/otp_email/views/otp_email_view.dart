@@ -1,4 +1,5 @@
 import 'package:adella_kitchen/app/routes/app_pages.dart';
+import 'package:adella_kitchen/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
@@ -6,7 +7,7 @@ import 'package:pinput/pinput.dart';
 import '../controllers/otp_email_controller.dart';
 
 class OtpEmailView extends GetView<OtpEmailController> {
-  const OtpEmailView({Key? key}) : super(key: key);
+  const OtpEmailView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,29 +17,31 @@ class OtpEmailView extends GetView<OtpEmailController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start, // Ubah menjadi start agar berada di ujung kiri
+              mainAxisAlignment: MainAxisAlignment
+                  .start, // Ubah menjadi start agar berada di ujung kiri
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   onPressed: () {
                     Get.offAllNamed(Routes.VERIF_EMAIL);
                   },
                 ),
-                SizedBox(width: 10), // Spasi antara tombol kembali dan teks
-                Text(
+                const SizedBox(
+                    width: 10), // Spasi antara tombol kembali dan teks
+                const Text(
                   'Verifikasi Email',
                   style: TextStyle(fontSize: 16), // Ubah ukuran font menjadi 16
                 ),
               ],
             ),
-            SizedBox(height: 10), // Tambahkan sedikit spasi antara baris
-            Text(
+            const SizedBox(height: 10), // Tambahkan sedikit spasi antara baris
+            const Text(
               'Masukkan kode OTP yang telah dikirimkan ke email Anda',
               style: TextStyle(fontSize: 14),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: Pinput(
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -57,23 +60,23 @@ class OtpEmailView extends GetView<OtpEmailController> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Belum menerima OTP?',
               style: TextStyle(fontSize: 14),
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Center(
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(205, 210, 40, 54),
+                  backgroundColor: myColor().primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  fixedSize: Size(350, 40),
+                  fixedSize: const Size(350, 40),
                 ),
-                child: Text(
+                child: const Text(
                   'Verifikasi',
                   style: TextStyle(
                     fontSize: 16,
@@ -82,7 +85,9 @@ class OtpEmailView extends GetView<OtpEmailController> {
                 ),
               ),
             ),
-            SizedBox(height: 20), // Tambahkan sedikit spasi di bagian bawah agar tidak terlalu dekat dengan tombol
+            const SizedBox(
+                height:
+                    20), // Tambahkan sedikit spasi di bagian bawah agar tidak terlalu dekat dengan tombol
           ],
         ),
       ),

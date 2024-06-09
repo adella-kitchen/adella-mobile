@@ -1,3 +1,4 @@
+import 'package:adella_kitchen/app/data/api/api.dart';
 import 'package:adella_kitchen/app/data/models/cart_item.dart';
 import 'package:get/get.dart';
 
@@ -18,59 +19,56 @@ class CartController extends GetxController {
       CartItem(
         id: 1,
         name: 'Paket Ayam Bebek',
-        imageUrl: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+        imageUrl: UrlApi().getImgMenu('menu8.jpg'),
         price: 10000,
         quantity: 1,
       ),
       CartItem(
         id: 2,
         name: 'Barang 2',
-        imageUrl:
-            'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+        imageUrl: UrlApi().getImgMenu('menu2.jpg'),
         price: 15000,
         quantity: 1,
       ),
       CartItem(
         id: 3,
         name: 'Barang 3',
-        imageUrl: 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
+        imageUrl: UrlApi().getImgMenu('menu3.jpg'),
         price: 25000,
         quantity: 1,
       ),
       CartItem(
         id: 4,
         name: 'Barang 4',
-        imageUrl: 'https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg',
+        imageUrl: UrlApi().getImgMenu('menu4.jpg'),
         price: 19000,
         quantity: 1,
       ),
       CartItem(
         id: 5,
         name: 'Barang 5',
-        imageUrl:
-            'https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg',
+        imageUrl: UrlApi().getImgMenu('menu5.jpg'),
         price: 15000,
         quantity: 1,
       ),
       CartItem(
         id: 6,
         name: 'Barang 6',
-        imageUrl:
-            'https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg',
+        imageUrl: UrlApi().getImgMenu('menu6.jpg'),
         price: 17000,
         quantity: 1,
       ),
       CartItem(
         id: 7,
         name: 'Barang 7',
-        imageUrl: 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',
+        imageUrl: UrlApi().getImgMenu('menu7.jpg'),
         price: 12000,
         quantity: 1,
       ),
       CartItem(
         id: 8,
         name: 'Barang 8',
-        imageUrl: 'https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg',
+        imageUrl: UrlApi().getImgMenu('menu8.jpg'),
         price: 55000,
         quantity: 1,
       ),

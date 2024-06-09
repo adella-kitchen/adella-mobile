@@ -4,7 +4,7 @@ class AllMenu {
   String menuName;
   String? descMenu;
   int priceMenu;
-  String variantImg;
+  String imgUrl;
 
   AllMenu({
     required this.idMenu,
@@ -12,7 +12,7 @@ class AllMenu {
     required this.menuName,
     this.descMenu,
     required this.priceMenu,
-    required this.variantImg,
+    required this.imgUrl,
   });
 }
 
