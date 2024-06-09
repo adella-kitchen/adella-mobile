@@ -110,7 +110,7 @@ class CardProductView extends StatelessWidget {
               elevation: 3,
               heightImage: 100,
               borderRadius: 4,
-              imageProvider: NetworkImage(menu.variantImg),
+              imageProvider: NetworkImage(menu.imgUrl),
               title: _title(title: menu.menuName),
               description: _content(
                 harga: menu.priceMenu,
