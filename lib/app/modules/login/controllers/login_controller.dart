@@ -54,12 +54,11 @@ class LoginController extends GetxController {
         if (userData != null) {
           final idUser = userData['id'];
           final emailUser = userData['email'];
+          final nameUser = userData['name'];
 
           print('Token User: $plainTextToken');
-          print('User ID: $idUser');
-          print('User Email: $emailUser');
 
-          await saveUserData(plainTextToken, idUser, emailUser);
+          await saveUserData(plainTextToken, idUser, emailUser, nameUser);
         } else {
           print('User data is null');
         }
@@ -111,10 +110,12 @@ class LoginController extends GetxController {
     }
   }
 
-  Future<void> saveUserData(String token, int idUser, String email) async {
+  Future<void> saveUserData(
+      String token, int idUser, String email, String name) async {
     await storage.write(key: 'token', value: token);
     await storage.write(key: 'id_user', value: idUser.toString());
     await storage.write(key: 'email', value: email);
+    await storage.write(key: 'name', value: name);
     print(storage.read(key: 'token'));
   }
 
