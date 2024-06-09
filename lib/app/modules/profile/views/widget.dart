@@ -142,6 +142,7 @@ class FProfile extends StatelessWidget {
                 hintText: hintText,
                 hintStyle: const TextStyle(
                   fontSize: 14,
+                  fontWeight: FontWeight.w500,
                   color: Color.fromARGB(255, 106, 113, 136),
                 ),
               ),
@@ -271,7 +272,7 @@ class FormUbahSandi extends StatelessWidget {
                 const EdgeInsets.symmetric(vertical: 15, horizontal: 18),
             hintText: hintText,
             hintStyle:
-                const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
             ),
@@ -324,26 +325,36 @@ class RadibtnProfile extends StatelessWidget {
             activeColor: const Color(0xffBE3144),
           ),
           const SizedBox(width: 15),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  labelAlamat,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(height: 5),
-                Text(labelKota),
-                const SizedBox(height: 5),
-                Text(labelKodePos),
-              ],
+          SizedBox(
+            width: 285,
+            child: Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    labelAlamat,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500, fontSize: 11),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    labelKota,
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    labelKodePos,
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ],
+              ),
             ),
           ),
           GestureDetector(
             onTap: onEditPressed,
             child: const Text(
               'edit',
-              style: TextStyle(color: Color(0xffBE3144)),
+              style: TextStyle(color: Color(0xffBE3144), fontSize: 10),
             ),
           ),
         ],

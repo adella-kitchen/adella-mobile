@@ -57,7 +57,7 @@ class PengaturanAlamatViewState extends State<PengaturanAlamatView> {
         actions: const [],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 28),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

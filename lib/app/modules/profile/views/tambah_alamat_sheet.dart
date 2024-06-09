@@ -1,6 +1,8 @@
 import 'package:adella_kitchen/app/modules/profile/views/widget.dart';
 import 'package:adella_kitchen/app/routes/app_pages.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class TambahAlamatSheet extends StatefulWidget {
@@ -41,73 +43,66 @@ class _TambahAlamatSheetState extends State<TambahAlamatSheet> {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      heightFactor: 0.8,
+      heightFactor: 0.83,
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.symmetric(vertical: 15),
             child: Stack(
-              alignment: Alignment.center,
               children: [
-                // Container untuk teks dengan garis bawah
-                Container(
-                  padding: const EdgeInsets.only(
-                      bottom:
-                          18), // Padding agar garis bawah tidak bertabrakan dengan ikon
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Tambah Alamat',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                const Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Tambah Alamat',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                // Container untuk border bawah dengan efek boxShadow
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 4,
-                  child: Container(
-                    height: 1, // Ketebalan border bawah
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.3),
-                          spreadRadius: 3,
-                          blurRadius: 4,
-                          offset: const Offset(0, 5),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                // Container untuk ikon
-                Positioned(
-                  left: 0,
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        left: 5, right: 9, bottom: 9), // Sesuaikan padding ikon
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(color: Color(0xFF6D6D6D), width: 2),
+
+                // Container for bottom border with boxShadow effect
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Positioned(
+                    left: 0,
+                    right: 0,
+                    top: 28,
+                    child: Container(
+                      height: 1, // Border thickness
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 1.5, color: const Color(0xFFBFC1C4)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF6D6D6D).withOpacity(0.3),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: const Offset(0, 1),
+                          ),
+                        ],
                       ),
                     ),
-                    child: IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: () {
-                        Get.back();
-                      },
+                  ),
+                ),
+
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                    const Text("Widget ditekan");
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    alignment: Alignment.centerLeft,
+                    child: const Icon(
+                      Icons
+                          .close, // Anda dapat memilih ikon apa pun yang Anda suka
+                      size: 30,
+                      // Sesuaikan ukuran sesuai kebutuhan
                     ),
                   ),
                 ),
+
+                // Positioned icon at the left edge
               ],
             ),
-          ),
-          const SizedBox(
-            height: 15,
           ),
           Expanded(
             child: Padding(
@@ -171,7 +166,7 @@ class _TambahAlamatSheetState extends State<TambahAlamatSheet> {
                               hintText: 'Masukkan alamat lengkap',
                               hintStyle: TextStyle(fontSize: 16),
                             ),
-                            maxLines: 4,
+                            maxLines: 5,
                           ),
                         ),
                       ],
