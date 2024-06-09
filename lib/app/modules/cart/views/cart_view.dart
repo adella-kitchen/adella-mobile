@@ -78,7 +78,7 @@ class CartView extends GetView<CartController> {
                         item.imageUrl,
                         width: 60,
                         height: 60,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                       ),
                       const SizedBox(width: 10),
                       Column(
