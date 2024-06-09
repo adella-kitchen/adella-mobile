@@ -12,3 +12,13 @@ class Api {
   String detailMenu(int id) => '$url/menu/$id';
   String get promo => '$url/promo';
 }
+
+class UrlApi extends Api {
+  String getImgMenu(String imgUrl) {
+    return "http://$ip:8000/img/manajemen_menu/$imgUrl";
+  }
+
+  String getImgPromo(String imgUrl) {
+    return "http://$ip:8000/img/promo/$imgUrl";
+  }
+}
