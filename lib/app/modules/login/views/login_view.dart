@@ -10,7 +10,6 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   LoginView({
     super.key,
   });
@@ -94,7 +93,9 @@ class LoginView extends GetView<LoginController> {
                   child: SignInButton(
                     Buttons.Google,
                     text: 'Masuk Dengan Google',
-                    onPressed: () {},
+                    onPressed: (){ 
+                      controller.logingoogle();
+                      },
                   ),
                 ),
                 Container(

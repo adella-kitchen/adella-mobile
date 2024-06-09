@@ -1,3 +1,4 @@
+import 'package:adella_kitchen/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/verif_email_controller.dart';
@@ -34,7 +35,12 @@ class VerifEmailView extends GetView<VerifEmailController> {
                 controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Email Anda',
+                  labelStyle: TextStyle(color: Colors.grey), // Warna label default
+                  floatingLabelStyle: TextStyle(color: Colors.black), // Warna label saat fokus
                   border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -55,8 +61,7 @@ class VerifEmailView extends GetView<VerifEmailController> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // Kirim kode verifikasi jika validasi berhasil
-                    // Implementasikan logika pengiriman kode verifikasi di sini
+                    Get.toNamed(Routes.OTP_EMAIL);
                   }
                 },
                 style: ElevatedButton.styleFrom(
