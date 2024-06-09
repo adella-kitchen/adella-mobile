@@ -51,4 +51,5 @@ abstract class _Paths {
   static const DETAIL_PRODUK = '/detail-produk';
   static const INPUT_PASS = '/input-pass';
   static const OTP_EMAIL = '/otp-email';
+  static const NOTIFIKASI = '/notifikasi';
 }
