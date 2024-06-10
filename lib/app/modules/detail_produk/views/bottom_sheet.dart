@@ -22,7 +22,7 @@ class BottomViewDetailProduk extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                primary: myColor().primaryColor,
+                backgroundColor: myColor().primaryColor,
               ),
               child: Text(
                 'Tambah Keranjang',
@@ -45,7 +45,7 @@ class BottomViewDetailProduk extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                primary: Colors.green, // Example color for the second button
+                backgroundColor: Colors.green, // Example color for the second button
               ),
               child: Text(
                 'Second Button',
