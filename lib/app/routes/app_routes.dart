@@ -16,6 +16,7 @@ abstract class Routes {
   static const UBAH_KATA_SANDI = _Paths.UBAH_KATA_SANDI;
   static const PENGATURAN_AKUN = _Paths.PENGATURAN_AKUN;
   static const PENGATURAN_ALAMAT = _Paths.PENGATURAN_ALAMAT;
+  static const NOTIFIKASI = _Paths.NOTIFIKASI;
 
   static const VERIF_EMAIL = _Paths.VERIF_EMAIL;
   static const STARTER = _Paths.STARTER;
@@ -50,4 +51,5 @@ abstract class _Paths {
   static const DETAIL_PRODUK = '/detail-produk';
   static const INPUT_PASS = '/input-pass';
   static const OTP_EMAIL = '/otp-email';
+  static const NOTIFIKASI = '/notifikasi';
 }

@@ -21,71 +21,54 @@ class ProfileView extends GetView<ProfileController> {
         child: Column(
           children: [
             Container(
-              color: const Color(0xFFBE3144),
-              width: double.infinity,
-              height: 350,
-              child: Stack(
-                alignment: Alignment.topRight,
-                children: [
-                  Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
+                color: const Color(0xFFBE3144),
+                width: double.infinity,
+                height: 170,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      alignment: Alignment.centerLeft,
+                      child: const CircleAvatar(
+                        radius: 50,
+                        backgroundImage: AssetImage('assets/img/avatar.jpg'),
+                      ),
+                    ),
+                    // Tambahkan Column di sini
+                    const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(vertical: 25),
-                          child: const CircleAvatar(
-                            radius: 65,
-                            backgroundImage:
-                                AssetImage('assets/img/avatar.jpg'),
+                        Text(
+                          'Lutfi Hakim',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
                           ),
                         ),
-                        const Text(
-                          'Lutfi Hakim',
-                          style: TextStyle(color: Colors.white, fontSize: 25),
-                        ),
-                        const SizedBox(height: 5),
-                        const Text(
+                        SizedBox(height: 5),
+                        Text(
                           'Lutfihakim@gmail.com',
-                          style: TextStyle(color: Colors.white, fontSize: 13),
-                        ),
-                        const SizedBox(height: 2),
-                        const Text(
-                          '+6282331098776',
-                          style: TextStyle(color: Colors.white, fontSize: 13),
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white70,
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  Positioned(
-                    top: 50, // Adjust the top position as needed
-                    right: 50,
-                    child: Container(
-                      alignment: Alignment.topRight,
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: const Icon(
-                        Icons.notifications,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 30),
+                  ],
+                )),
+            const SizedBox(height: 40),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               color: const Color.fromARGB(255, 246, 245, 245),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   TitleCard(
                     text: 'Pesanan',
-                    icon: Bootstrap.clipboard2_check_fill,
+                    icon: Bootstrap.clipboard2_data_fill,
                     textLeading: 'Cek riwayat pesanan',
                     iconLeading: Icons.arrow_forward_ios_outlined,
                     onPressed: () => Get.toNamed(Routes.CEK_RIWAYAT_PESANAN),
@@ -114,7 +97,7 @@ class ProfileView extends GetView<ProfileController> {
                           SizedBox(height: 30),
                         ],
                       ),
-                      SizedBox(width: 30),
+                      SizedBox(width: 20),
                       Column(
                         children: [
                           Image(
@@ -134,7 +117,7 @@ class ProfileView extends GetView<ProfileController> {
                           SizedBox(height: 30),
                         ],
                       ),
-                      SizedBox(width: 30),
+                      SizedBox(width: 20),
                       Column(
                         children: [
                           Image(
@@ -157,12 +140,20 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(height: 15),
                   TitleCard(
                     text: 'Informasi Profil',
                     icon: Bootstrap.person_fill,
                     onPressed: () {
                       Get.toNamed(Routes.PENGATURAN_AKUN);
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  TitleCard(
+                    text: 'Notifikasi',
+                    icon: Icons.notifications,
+                    onPressed: () {
+                      Get.toNamed(Routes.NOTIFIKASI);
                     },
                   ),
                   const SizedBox(height: 30),
@@ -181,7 +172,7 @@ class ProfileView extends GetView<ProfileController> {
                       Get.toNamed(Routes.PENGATURAN_ALAMAT);
                     },
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 50),
                   const Column(
                     children: [
                       Row(

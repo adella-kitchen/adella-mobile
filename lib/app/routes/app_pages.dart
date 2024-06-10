@@ -1,4 +1,5 @@
 import 'package:adella_kitchen/app/modules/profile/views/cek_riwayat_pesanan_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/notifikasi_view.dart';
 import 'package:adella_kitchen/app/modules/profile/views/pengaturan_akun_view.dart';
 import 'package:adella_kitchen/app/modules/profile/views/pengaturan_alamat_view.dart';
 import 'package:adella_kitchen/app/modules/profile/views/ubah_kata_sandi_view.dart';
@@ -104,11 +105,16 @@ class AppPages {
       binding: ProfileBinding(),
     ),
     GetPage(
+      name: _Paths.NOTIFIKASI,
+      page: () => const NotifikasiView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
       name: _Paths.PENGATURAN_ALAMAT,
       page: () => const PengaturanAlamatView(),
       binding: ProfileBinding(),
     ),
-     GetPage(
+    GetPage(
       name: _Paths.VERIF_EMAIL,
       page: () => const VerifEmailView(),
       binding: VerifEmailBinding(),
@@ -125,7 +131,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAIL_PRODUK,
-      page: () => DetailProdukView(),
+      page: () => const DetailProdukView(),
       binding: DetailProdukBinding(),
     ),
     GetPage(

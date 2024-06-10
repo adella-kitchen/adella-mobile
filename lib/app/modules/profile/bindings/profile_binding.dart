@@ -1,6 +1,8 @@
 import 'package:adella_kitchen/app/modules/profile/controllers/cek_riwayat_pesanan_controller.dart';
+import 'package:adella_kitchen/app/modules/profile/controllers/notifikasi_controller.dart';
 import 'package:adella_kitchen/app/modules/profile/controllers/pengaturan_akun_controller.dart';
 import 'package:adella_kitchen/app/modules/profile/controllers/pengaturan_alamat_controller.dart';
+import 'package:adella_kitchen/app/modules/profile/controllers/tambah_alamat_controller.dart';
 import 'package:adella_kitchen/app/modules/profile/controllers/ubah_kata_sandi_contoller.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +25,12 @@ class ProfileBinding extends Bindings {
     );
     Get.lazyPut<PengaturanAlamatController>(
       () => PengaturanAlamatController(),
+    );
+    Get.lazyPut<TambahAlamatController>(
+      () => TambahAlamatController(),
+    );
+    Get.lazyPut<NotifikasiController>(
+      () => NotifikasiController(),
     );
   }
 }

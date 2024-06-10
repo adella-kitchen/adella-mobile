@@ -142,6 +142,7 @@ class FProfile extends StatelessWidget {
                 hintText: hintText,
                 hintStyle: const TextStyle(
                   fontSize: 14,
+                  fontWeight: FontWeight.w500,
                   color: Color.fromARGB(255, 106, 113, 136),
                 ),
               ),
@@ -157,9 +158,11 @@ class BtnPrimaryProfile extends StatelessWidget {
   const BtnPrimaryProfile({
     super.key,
     required this.btnText,
+    this.onPressed,
   });
 
   final String btnText;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +173,7 @@ class BtnPrimaryProfile extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: onPressed,
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFBE3144),
                 padding: const EdgeInsets.symmetric(vertical: 20),
@@ -269,7 +272,7 @@ class FormUbahSandi extends StatelessWidget {
                 const EdgeInsets.symmetric(vertical: 15, horizontal: 18),
             hintText: hintText,
             hintStyle:
-                const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
             ),
@@ -279,6 +282,176 @@ class FormUbahSandi extends StatelessWidget {
               padding: const EdgeInsets.only(right: 15),
             ),
           ),
+        ),
+      ],
+    );
+  }
+}
+
+class RadibtnProfile extends StatelessWidget {
+  const RadibtnProfile({
+    super.key,
+    required this.value,
+    required this.selectedValue,
+    required this.onChanged,
+    required this.labelAlamat,
+    required this.labelKota,
+    required this.labelKodePos,
+    required this.onEditPressed,
+  });
+  final int value;
+  final int? selectedValue;
+  final ValueChanged<int?> onChanged;
+  final String labelAlamat;
+  final String labelKota;
+  final String labelKodePos;
+  final VoidCallback onEditPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(width: 1.0, color: Color(0xFFBFC1C4)),
+        ),
+      ),
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: [
+          Radio<int>(
+            value: value,
+            groupValue: selectedValue,
+            onChanged: onChanged,
+            activeColor: const Color(0xffBE3144),
+          ),
+          const SizedBox(width: 15),
+          SizedBox(
+            width: 285,
+            child: Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    labelAlamat,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500, fontSize: 11),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    labelKota,
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    labelKodePos,
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: onEditPressed,
+            child: const Text(
+              'edit',
+              style: TextStyle(color: Color(0xffBE3144), fontSize: 10),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class btnTambahAlamat extends StatelessWidget {
+  const btnTambahAlamat({
+    super.key,
+    required this.onTambahPressed,
+  });
+
+  final VoidCallback onTambahPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          icon: const Icon(
+            Icons.add_circle,
+            color: Color(0xFFBE3144),
+          ),
+          onPressed: onTambahPressed,
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        GestureDetector(
+          onTap: onTambahPressed,
+          child: const Text(
+            'Tambah Alamat',
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFFBE3144)),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class DropDown extends StatelessWidget {
+  const DropDown({
+    super.key,
+    required this.labelText,
+    required this.hintText,
+    required this.onChanged,
+    required this.items,
+    required this.value,
+  });
+
+  final String labelText;
+  final String hintText;
+
+  final ValueChanged<String?> onChanged;
+  final List<String> items;
+  final String? value;
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          labelText,
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        DropdownButtonFormField<String>(
+          value: value,
+          hint: Text(
+            hintText,
+            style: const TextStyle(
+              fontSize: 15,
+            ),
+          ),
+          onChanged: onChanged,
+          items: items.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+          ),
+        ),
+        const SizedBox(
+          height: 20,
         ),
       ],
     );
