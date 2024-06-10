@@ -90,7 +90,7 @@ class CardProduct extends StatelessWidget {
   final double? tagSpacing;
   final double? tagRunSpacing;
   final EdgeInsetsGeometry? contentPadding;
-  final ImageProvider imageProvider;
+  final Widget imageProvider; // Ubah dari ImageProvider menjadi Widget
   final List<Widget>? tags;
   final Color color;
   final Widget? title;
@@ -117,11 +117,10 @@ class CardProduct extends StatelessWidget {
                   topLeft: Radius.circular(borderRadius),
                   topRight: Radius.circular(borderRadius),
                 ),
-                child: Image(
-                  image: imageProvider,
+                child: SizedBox(
                   width: width,
                   height: heightImage,
-                  fit: BoxFit.cover,
+                  child: imageProvider, // Gunakan Widget imageProvider langsung
                 ),
               ),
               Flexible(
@@ -144,6 +143,7 @@ class CardProduct extends StatelessWidget {
     );
   }
 }
+
 
 class ImageCardContent extends StatelessWidget {
   const ImageCardContent({
