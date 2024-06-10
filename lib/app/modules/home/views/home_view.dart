@@ -1,3 +1,4 @@
+import 'package:adella_kitchen/app/data/api/api.dart';
 import 'package:adella_kitchen/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:adella_kitchen/app/modules/explore/views/widget.dart';
 import 'package:adella_kitchen/app/modules/home/views/widget.dart';
@@ -72,7 +73,7 @@ class HomeView extends GetView<HomeController> {
                   TfSearch(
                     hint: 'Cari Menu Makanan',
                     controller: searchController,
-                    borderSide: BorderSide.none,                                        
+                    borderSide: BorderSide.none,
                     onTap: () => Get.toNamed(Routes.EXPLORE),
                   ),
                   const SizedBox(height: 10),
@@ -233,9 +234,14 @@ class CardProductView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (controller.myMenu.isEmpty) {
+      if (controller.isLoading.value) {
+        return const Center(child: CircularProgressIndicator());
+      }
+
+      if (controller.productMenu.isEmpty) {
         return const Center(child: Text('No products available'));
       }
+
       return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -244,9 +250,9 @@ class CardProductView extends StatelessWidget {
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
         ),
-        itemCount: controller.myMenu.length,
+        itemCount: controller.productMenu.length,
         itemBuilder: (BuildContext context, int index) {
-          final menu = controller.myMenu[index];
+          final menu = controller.productMenu[index];
           return CardProduct(
             ontap: () {
               print(menu.idMenu);
@@ -256,7 +262,14 @@ class CardProductView extends StatelessWidget {
             elevation: 3,
             heightImage: 100,
             borderRadius: 4,
-            imageProvider: NetworkImage(menu.imgUrl),
+            imageProvider: FancyShimmerImage(
+              imageUrl: UrlApi().getImgMenu(menu.imgUrl),
+              boxFit: BoxFit.cover,
+              width: double.infinity,
+              errorWidget: const Center(
+                child: Text('Error loading image'),
+              ),
+            ),
             title: _title(title: menu.menuName),
             description: _content(
               harga: menu.priceMenu,
