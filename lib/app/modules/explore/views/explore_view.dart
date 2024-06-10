@@ -1,3 +1,4 @@
+import 'package:adella_kitchen/app/data/api/api.dart';
 import 'package:adella_kitchen/app/modules/explore/views/widget.dart';
 import 'package:adella_kitchen/app/modules/home/views/widget.dart';
 import 'package:adella_kitchen/theme/color.dart';
@@ -97,9 +98,9 @@ class CardProductView extends StatelessWidget {
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
         ),
-        itemCount: controller.myMenu.length,
+        itemCount: controller.productMenu.length,
         itemBuilder: (BuildContext context, int index) {
-          final menu = controller.myMenu[index];
+          final menu = controller.productMenu[index];
           return SizedBox.expand(
             child: CardProduct(
               ontap: () {
@@ -112,7 +113,7 @@ class CardProductView extends StatelessWidget {
               heightImage: 100,
               borderRadius: 4,
               imageProvider: FancyShimmerImage(
-                imageUrl: menu.imgUrl,
+                imageUrl: UrlApi().getImgMenu(menu.imgUrl),
                 boxFit: BoxFit.cover,
                 width: double.infinity,
                 errorWidget: const Center(
