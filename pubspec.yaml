@@ -22,6 +22,7 @@ dependencies:
   input_quantity: 2.3.4
   phone_text_field: 0.0.7
   pinput: 4.0.0
+  dropdown_button2: ^2.3.9
   flutter_secure_storage: ^8.1.0
   fancy_shimmer_image: 2.0.3
   path_provider: 2.1.3
