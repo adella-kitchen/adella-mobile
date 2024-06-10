@@ -1,6 +1,7 @@
 import 'package:adella_kitchen/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:adella_kitchen/app/modules/login/controllers/login_controller.dart';
 import 'package:adella_kitchen/app/modules/login/views/login_view.dart';
+import 'package:adella_kitchen/app/routes/app_pages.dart';
 import 'package:adella_kitchen/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,15 +19,6 @@ class SplashScreenView extends GetView<SplashScreenController> {
         duration: 1500,
         backgroundColor: myColor().primaryColor,
         pageTransitionType: PageTransitionType.fade,
-        nextScreen: getNextScreen());
-  }
-}
-
-Widget getNextScreen() {
-   final LoginController loginController = Get.find<LoginController>();
-  if (loginController.isLogin.value) {
-    return const DashboardView();
-  } else {
-    return LoginView();
+        nextScreen: LoginView());
   }
 }
