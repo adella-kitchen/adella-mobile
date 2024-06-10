@@ -24,7 +24,7 @@ class DashboardView extends StatelessWidget {
               HomeView(),
               ExploreView(),
               const CartView(),
-              const ProfileView()
+              ProfileView()
             ],
           ),
         ),

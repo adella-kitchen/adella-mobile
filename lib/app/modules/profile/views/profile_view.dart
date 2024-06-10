@@ -1,4 +1,5 @@
 // import 'package:adella_kitchen/app/modules/home/views/widget.dart';
+import 'package:adella_kitchen/app/modules/login/controllers/login_controller.dart';
 import 'package:adella_kitchen/app/modules/profile/views/widget.dart';
 import 'package:adella_kitchen/app/routes/app_pages.dart';
 // import 'package:adella_kitchen/theme/app_theme.dart';
@@ -16,6 +17,7 @@ class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
   @override
   Widget build(BuildContext context) {
+    final authController = Get.put(LoginController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -173,23 +175,62 @@ class ProfileView extends GetView<ProfileController> {
                     },
                   ),
                   const SizedBox(height: 50),
-                  const Column(
+                  Column(
                     children: [
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Bootstrap.door_open_fill,
                             color: Color(0xFFDC495C),
                           ),
-                          SizedBox(width: 10),
-                          Text(
-                            'Logout',
-                            style: TextStyle(
-                              color: Color(0xFFDC495C),
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15,
+                          const SizedBox(width: 10),
+                          TextButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('Konfirmasi Logout'),
+                                    content: const Text(
+                                        'Apakah Anda yakin ingin logout?'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          // Tutup dialog
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text('Batal'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          // Lakukan logout
+                                          authController.logout();
+                                          // Tutup dialog
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text(
+                                          'Logout',
+                                          style: TextStyle(
+                                            color: Color(0xFFDC495C),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: const Text(
+                              'Logout',
+                              style: TextStyle(
+                                color: Color(0xFFDC495C),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                              ),
                             ),
-                          ),
+                          )
                         ],
                       ),
                     ],
