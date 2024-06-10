@@ -1,4 +1,3 @@
-
 import 'package:adella_kitchen/app/modules/step_page/controllers/step_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
 class VerifNotelf extends StatelessWidget {
-   final StepPageController stepPageController = Get.find<StepPageController>();
-   VerifNotelf({super.key});
+  final StepPageController stepPageController = Get.find<StepPageController>();
+  VerifNotelf({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +14,22 @@ class VerifNotelf extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start, // Align content to the left
         children: [
-          Text(
-            'Verifikasi Nomer Telepon',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          SizedBox(height: 20),
+          Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  stepPageController.previousStep(); // Fungsi untuk kembali ke langkah sebelumnya
+                },
+              ),
+              Text(
+                'Verifikasi Nomer Telepon',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
           const SizedBox(height: 15),
           const Text(
@@ -29,7 +40,8 @@ class VerifNotelf extends StatelessWidget {
             textAlign: TextAlign.start,
           ),
           SizedBox(height: 20),
-          Pinput(
+          Center(
+         child: Pinput(
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             length: 4,
             showCursor: true,
@@ -39,37 +51,38 @@ class VerifNotelf extends StatelessWidget {
             defaultPinTheme: PinTheme(
               height: 50,
               width: 50,
-             decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8),      
-             ),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(8),
+              ),
             ),
           ),
-
+          ),
           SizedBox(height: 20),
-          Text('Belum menerima OTP??',
-          style: TextStyle(fontSize: 14),
+          Text(
+            'Belum menerima OTP?',
+            style: TextStyle(fontSize: 14),
           ),
-
           SizedBox(height: 25),
-            ElevatedButton(
-              onPressed: () {stepPageController.nextStep();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(205, 210, 40, 54),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                fixedSize: Size(350, 40),
+          ElevatedButton(
+            onPressed: () {
+              stepPageController.nextStep();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color.fromARGB(205, 210, 40, 54),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: Text(
-                'Verifikasi',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
+              fixedSize: Size(350, 40),
+            ),
+            child: Text(
+              'Verifikasi',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
               ),
             ),
+          ),
         ],
       ),
     );

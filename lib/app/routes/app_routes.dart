@@ -12,6 +12,11 @@ abstract class Routes {
   static const CART = _Paths.CART;
   static const PROFILE = _Paths.PROFILE;
   static const ONBOARDING = _Paths.ONBOARDING;
+  static const CEK_RIWAYAT_PESANAN = _Paths.CEK_RIWAYAT_PESANAN;
+  static const UBAH_KATA_SANDI = _Paths.UBAH_KATA_SANDI;
+  static const PENGATURAN_AKUN = _Paths.PENGATURAN_AKUN;
+  static const PENGATURAN_ALAMAT = _Paths.PENGATURAN_ALAMAT;
+  static const NOTIFIKASI = _Paths.NOTIFIKASI;
 
   static const VERIF_EMAIL = _Paths.VERIF_EMAIL;
   static const STARTER = _Paths.STARTER;
@@ -19,6 +24,8 @@ abstract class Routes {
   static const VERIF_NOTELF = _Paths.VERIF_NOTELF;
   static const VERIF_NOTELP = _Paths.VERIF_NOTELP;
   static const DETAIL_PRODUK = _Paths.DETAIL_PRODUK;
+  static const INPUT_PASS = _Paths.INPUT_PASS;
+  static const OTP_EMAIL = _Paths.OTP_EMAIL;
 }
 
 abstract class _Paths {
@@ -32,10 +39,17 @@ abstract class _Paths {
   static const CART = '/cart';
   static const PROFILE = '/profile';
   static const ONBOARDING = '/onboarding';
+  static const CEK_RIWAYAT_PESANAN = '/cek-riwayat-pesanan';
+  static const UBAH_KATA_SANDI = '/ubah-kata-sandi';
+  static const PENGATURAN_AKUN = '/pengaturan-akun';
+  static const PENGATURAN_ALAMAT = '/pengaturan-alamat';
   static const VERIF_EMAIL = '/verif-email';
   static const STARTER = '/starter';
   static const STEP_PAGE = '/step-page';
   static const VERIF_NOTELF = '/verif-notelf';
   static const VERIF_NOTELP = '/verif-notelp';
   static const DETAIL_PRODUK = '/detail-produk';
+  static const INPUT_PASS = '/input-pass';
+  static const OTP_EMAIL = '/otp-email';
+  static const NOTIFIKASI = '/notifikasi';
 }

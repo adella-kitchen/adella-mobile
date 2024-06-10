@@ -1,7 +1,9 @@
+import 'package:adella_kitchen/app/data/api/api.dart';
 import 'package:adella_kitchen/app/modules/explore/views/widget.dart';
 import 'package:adella_kitchen/app/modules/home/views/widget.dart';
 import 'package:adella_kitchen/theme/color.dart';
 import 'package:adella_kitchen/theme/widget/app_widget.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -96,9 +98,9 @@ class CardProductView extends StatelessWidget {
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
         ),
-        itemCount: controller.myMenu.length,
+        itemCount: controller.productMenu.length,
         itemBuilder: (BuildContext context, int index) {
-          final menu = controller.myMenu[index];
+          final menu = controller.productMenu[index];
           return SizedBox.expand(
             child: CardProduct(
               ontap: () {
@@ -110,7 +112,14 @@ class CardProductView extends StatelessWidget {
               elevation: 3,
               heightImage: 100,
               borderRadius: 4,
-              imageProvider: NetworkImage(menu.variantImg),
+              imageProvider: FancyShimmerImage(
+                imageUrl: UrlApi().getImgMenu(menu.imgUrl),
+                boxFit: BoxFit.cover,
+                width: double.infinity,
+                errorWidget: const Center(
+                  child: Text('Error loading image'),
+                ),
+              ),
               title: _title(title: menu.menuName),
               description: _content(
                 harga: menu.priceMenu,

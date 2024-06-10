@@ -26,15 +26,25 @@ class _NomerTelfonState extends State<NomerTelfon> {
           errorMessage = '';
         });
       },
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Tambahkan Nomor Telepon',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            SizedBox(height: 20),
+            Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    stepPageController.previousStep(); // Fungsi untuk kembali ke langkah sebelumnya
+                  },
+                ),
+                Text(
+                  'Tambahkan Nomor Telepon',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
             SizedBox(height: 20),
             Text(
@@ -44,7 +54,7 @@ class _NomerTelfonState extends State<NomerTelfon> {
             ),
             SizedBox(height: 35),
             Container(
-              width: 350,
+              width: double.infinity,
               height: 40,
               child: TextFormField(
                 controller: phoneController,

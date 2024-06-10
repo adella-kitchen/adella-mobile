@@ -10,7 +10,6 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   LoginView({
     super.key,
   });
@@ -46,25 +45,35 @@ class LoginView extends GetView<LoginController> {
                 ),
                 Container(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    'Lupa kata sandi?',
-                    style: TextStyle(
-                      color: myColor().primaryColor,
-                      fontWeight: FontWeight.bold,
+                  child: TextButton(
+                    child: Text(
+                      'Lupa kata sandi?',
+                      style: TextStyle(
+                        color: myColor().primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    onPressed: () {
+                      Get.toNamed(Routes.VERIF_EMAIL);
+                    },
                   ),
                 ),
                 BtnLogin(
-                  btnText: 'Login',
-                  onPressed: () {
+                  btnText: controller.isLoading.value ? 'Loading....' : 'Login',
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
                       print('form valid');
-                      controller.login(controller.emailController.text,
-                          controller.passwordController.text);
+                      controller.isLoading.value =
+                          true; // Menampilkan loading spinner
+                      await controller.login(
+                        controller.emailController.text,
+                        controller.passwordController.text,
+                      );
                     }
                   },
-                  isLoading: controller.isLoading.value,
+                  isLoading: controller
+                      .isLoading.value, // Langsung gunakan controller.isLoading
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 30),
@@ -94,7 +103,9 @@ class LoginView extends GetView<LoginController> {
                   child: SignInButton(
                     Buttons.Google,
                     text: 'Masuk Dengan Google',
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.logingoogle();
+                    },
                   ),
                 ),
                 Container(

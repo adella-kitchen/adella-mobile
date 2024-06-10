@@ -1,3 +1,5 @@
+import 'package:adella_kitchen/app/data/api/api.dart';
+import 'package:adella_kitchen/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:adella_kitchen/app/modules/explore/views/widget.dart';
 import 'package:adella_kitchen/app/modules/home/views/widget.dart';
 import 'package:adella_kitchen/app/routes/app_pages.dart';
@@ -12,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../controllers/home_controller.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 
 class HomeView extends GetView<HomeController> {
   TextEditingController searchController = TextEditingController();
@@ -26,6 +29,7 @@ class HomeView extends GetView<HomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Header section
             Container(
               padding: const EdgeInsets.all(20),
               width: double.infinity,
@@ -69,7 +73,7 @@ class HomeView extends GetView<HomeController> {
                   TfSearch(
                     hint: 'Cari Menu Makanan',
                     controller: searchController,
-                    borderSide: BorderSide.none,                    
+                    borderSide: BorderSide.none,
                     onTap: () => Get.toNamed(Routes.EXPLORE),
                   ),
                   const SizedBox(height: 10),
@@ -121,39 +125,45 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                   ),
-                  CarouselSlider(
-                    items: controller.myPromo.map((promo) {
-                      return GestureDetector(
-                        onTap: () {
-                          print('id promo di klik: ${promo.idPromo}');
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              promo.gambarPromo,
-                              fit: BoxFit.cover,
-                              width: 1000.0,
+
+                  Obx(() {
+                    return CarouselSlider(
+                      items: controller.myPromo.map((promo) {
+                        return GestureDetector(
+                          onTap: () {
+                            print('id promo di klik: ${promo.idPromo}');
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: FancyShimmerImage(
+                                imageUrl: promo.gambarPromo,
+                                boxFit: BoxFit.cover,
+                                width: 1000.0,
+                                errorWidget: const Center(
+                                  child: Text('Error loading image'),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }).toList(),
-                    options: CarouselOptions(
-                      autoPlay: true,
-                      enlargeCenterPage: true,
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      autoPlayAnimationDuration:
-                          const Duration(milliseconds: 800),
-                      autoPlayInterval: const Duration(seconds: 2),
-                      aspectRatio: 2.0,
-                      height: 150,
-                      onPageChanged: (index, reason) {
-                        controller.currentIndex.value = index;
-                      },
-                    ),
-                  ),
+                        );
+                      }).toList(),
+                      options: CarouselOptions(
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        autoPlayAnimationDuration:
+                            const Duration(milliseconds: 800),
+                        autoPlayInterval: const Duration(seconds: 2),
+                        aspectRatio: 2.0,
+                        height: 150,
+                        onPageChanged: (index, reason) {
+                          controller.currentIndex.value = index;
+                        },
+                      ),
+                    );
+                  }),
 
                   const SizedBox(
                     height: 10,
@@ -195,9 +205,8 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                   ),
-                  // Add Expanded here to ensure the parent Column does not try to expand indefinitely
-                  // Expanded(child: CardProductView(controller: controller)),
-                  // Wrap GridView.builder in a ConstrainedBox
+
+                  // ConstrainedBox for product cards
                   ConstrainedBox(
                     constraints: BoxConstraints(
                       maxHeight: MediaQuery.of(context).size.height,
@@ -225,9 +234,14 @@ class CardProductView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (controller.myMenu.isEmpty) {
+      if (controller.isLoading.value) {
+        return const Center(child: CircularProgressIndicator());
+      }
+
+      if (controller.productMenu.isEmpty) {
         return const Center(child: Text('No products available'));
       }
+
       return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -236,9 +250,9 @@ class CardProductView extends StatelessWidget {
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
         ),
-        itemCount: controller.myMenu.length,
+        itemCount: controller.productMenu.length,
         itemBuilder: (BuildContext context, int index) {
-          final menu = controller.myMenu[index];
+          final menu = controller.productMenu[index];
           return CardProduct(
             ontap: () {
               print(menu.idMenu);
@@ -248,7 +262,14 @@ class CardProductView extends StatelessWidget {
             elevation: 3,
             heightImage: 100,
             borderRadius: 4,
-            imageProvider: NetworkImage(menu.variantImg),
+            imageProvider: FancyShimmerImage(
+              imageUrl: UrlApi().getImgMenu(menu.imgUrl),
+              boxFit: BoxFit.cover,
+              width: double.infinity,
+              errorWidget: const Center(
+                child: Text('Error loading image'),
+              ),
+            ),
             title: _title(title: menu.menuName),
             description: _content(
               harga: menu.priceMenu,

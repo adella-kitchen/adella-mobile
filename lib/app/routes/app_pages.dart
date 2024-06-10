@@ -1,3 +1,8 @@
+import 'package:adella_kitchen/app/modules/profile/views/cek_riwayat_pesanan_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/notifikasi_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/pengaturan_akun_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/pengaturan_alamat_view.dart';
+import 'package:adella_kitchen/app/modules/profile/views/ubah_kata_sandi_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/cart/bindings/cart_binding.dart';
@@ -10,10 +15,14 @@ import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/input_pass/bindings/input_pass_binding.dart';
+import '../modules/input_pass/views/input_pass_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/otp_email/bindings/otp_email_binding.dart';
+import '../modules/otp_email/views/otp_email_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -32,7 +41,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DASHBOARD;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -72,13 +81,38 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PROFILE,
-      page: () => const ProfileView(),
+      page: () => ProfileView(),
       binding: ProfileBinding(),
     ),
     GetPage(
       name: _Paths.ONBOARDING,
       page: () => const OnboardingView(),
       binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: _Paths.CEK_RIWAYAT_PESANAN,
+      page: () => const CekRiwayatPesananView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.UBAH_KATA_SANDI,
+      page: () => UbahKataSandiView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGATURAN_AKUN,
+      page: () => PengaturanAkunView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFIKASI,
+      page: () => const NotifikasiView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGATURAN_ALAMAT,
+      page: () => const PengaturanAlamatView(),
+      binding: ProfileBinding(),
     ),
     GetPage(
       name: _Paths.VERIF_EMAIL,
@@ -97,8 +131,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAIL_PRODUK,
-      page: () => DetailProdukView(),
+      page: () => const DetailProdukView(),
       binding: DetailProdukBinding(),
+    ),
+    GetPage(
+      name: _Paths.INPUT_PASS,
+      page: () => const InputPassView(),
+      binding: InputPassBinding(),
+    ),
+    GetPage(
+      name: _Paths.OTP_EMAIL,
+      page: () => const OtpEmailView(),
+      binding: OtpEmailBinding(),
     ),
   ];
 }

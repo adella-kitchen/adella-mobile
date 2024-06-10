@@ -1,30 +1,41 @@
+import 'package:adella_kitchen/app/modules/step_page/controllers/step_page_controller.dart';
 import 'package:adella_kitchen/theme/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 class DaftarAlamat extends StatelessWidget {
-  const DaftarAlamat({super.key});
+  const DaftarAlamat({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final StepPageController stepPageController = Get.find<StepPageController>();
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Tambahkan widget lain di sini yang Anda ingin berada dalam padding ini.
-          Text(
-            'Daftarkan Alamat Kamu',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  stepPageController.previousStep();
+                },
+              ),
+              Text(
+                'Daftarkan Alamat Kamu',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
-          SizedBox(
-            height: 20,
-          ),
+          SizedBox(height: 20),
           Text(
             'Daftarkan alamat kamu untuk memastikan makanan yang kami kirimkan sampai di rumah kamu.',
             style: TextStyle(fontSize: 12),
             textAlign: TextAlign.left,
           ),
-
           SizedBox(height: 20),
           Text(
             'Provinsi',
@@ -48,7 +59,6 @@ class DaftarAlamat extends StatelessWidget {
               onChanged: (String? value) {},
             ),
           ),
-
           SizedBox(height: 18),
           Text(
             'Kota',
@@ -72,7 +82,6 @@ class DaftarAlamat extends StatelessWidget {
               onChanged: (String? value) {},
             ),
           ),
-
           SizedBox(height: 18),
           Text(
             'Kode Pos',
@@ -99,13 +108,13 @@ class DaftarAlamat extends StatelessWidget {
             'Alamat Lengkap',
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
-         SizedBox(height: 5),
+          SizedBox(height: 5),
           Container(
             width: 350,
             child: TextFormField(
               maxLines: 6, // Tentukan jumlah maksimum baris yang diinginkan
               decoration: InputDecoration(
-                 alignLabelWithHint: true,
+                alignLabelWithHint: true,
                 labelText: 'Masukkan Alamat Lengkap',
                 labelStyle: TextStyle(fontSize: 12, color: Colors.black),
                 border: OutlineInputBorder(),
@@ -126,9 +135,10 @@ class DaftarAlamat extends StatelessWidget {
               ),
               fixedSize: (Size(350, 40)),
             ),
-            child: Text('Konfirmasi',
-            style: TextStyle(fontSize: 16, 
-            color: Colors.white),),
+            child: Text(
+              'Konfirmasi',
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            ),
           ),
         ],
       ),

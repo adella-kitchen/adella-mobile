@@ -286,19 +286,6 @@ class BtnPrimary extends StatelessWidget {
         height: 50,
         width: double.infinity,
         child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
-              ),
-            ),
-            minimumSize: MaterialStateProperty.all(
-              const Size(double.infinity, 50),
-            ),
-            backgroundColor: MaterialStateProperty.all(
-              myColor().primaryColor,
-            ),
-          ),
           onPressed: onPressed,
           child: Text(
             btnText,
@@ -380,7 +367,11 @@ class CustomSnackBar {
     Get.snackbar(
       title,
       desc,
-      icon: const Icon(Ionicons.checkmark_circle_outline),
+      backgroundColor: const Color.fromARGB(255, 223, 223, 223),
+      icon: const Icon(
+        Ionicons.checkmark_circle_outline,
+        color: Color(0xff198754),
+      ),
       leftBarIndicatorColor: const Color(0xff198754),
       duration: const Duration(seconds: 2),
     );
@@ -391,7 +382,11 @@ class CustomSnackBar {
     String desc,
   ) {
     Get.snackbar(title, desc,
-        icon: const Icon(Ionicons.warning),
+        backgroundColor: const Color.fromARGB(255, 223, 223, 223),
+        icon: const Icon(
+          Ionicons.warning,
+          color: Color(0xffffc107),
+        ),
         leftBarIndicatorColor: const Color(0xffffc107),
         duration: const Duration(seconds: 2));
   }
@@ -401,7 +396,11 @@ class CustomSnackBar {
     String desc,
   ) {
     Get.snackbar(title, desc,
-        icon: const Icon(Ionicons.bug),
+        icon: const Icon(
+          Ionicons.bug,
+          color: Color(0xffdc3545),
+        ),
+        backgroundColor: const Color.fromARGB(255, 223, 223, 223),
         leftBarIndicatorColor: const Color(0xffdc3545),
         duration: const Duration(seconds: 2));
   }
