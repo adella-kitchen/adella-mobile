@@ -1,7 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Api {
-  var ip = '192.168.1.6';
+  var ip = '192.168.1.11';
   String get url => 'http://$ip:8000/api';
 
   final FlutterSecureStorage storage = const FlutterSecureStorage();

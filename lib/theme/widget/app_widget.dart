@@ -303,25 +303,23 @@ class BtnPrimary extends StatelessWidget {
 class BtnLogin extends StatelessWidget {
   final String btnText;
   final VoidCallback? onPressed;
-  final bool isLoading; // Tambahkan properti isLoading
+  final RxBool isLoading;
 
   const BtnLogin({
     super.key,
     required this.btnText,
     required this.onPressed,
-    required this.isLoading, // Tambahkan isLoading
+    required this.isLoading,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 15),
-      child: SizedBox(
-        height: 50,
-        width: double.infinity,
-        child: Stack(
-          children: [
-            ElevatedButton(
+    return Obx(() => Container(
+          margin: const EdgeInsets.only(top: 15),
+          child: SizedBox(
+            height: 50,
+            width: double.infinity,
+            child: ElevatedButton(
               style: ButtonStyle(
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
@@ -335,27 +333,22 @@ class BtnLogin extends StatelessWidget {
                   myColor().primaryColor,
                 ),
               ),
-              onPressed: isLoading
-                  ? null
-                  : onPressed, // Disable tombol saat isLoading true
-              child: Text(
-                btnText,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              onPressed: isLoading.value ? null : onPressed,
+              child: isLoading.value
+                  ? const CircularProgressIndicator(                                          
+                      strokeWidth: 3,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    )
+                  : Text(
+                      btnText,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
             ),
-            if (isLoading) // Tampilkan indikator loading jika isLoading true
-              const Positioned.fill(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
 
