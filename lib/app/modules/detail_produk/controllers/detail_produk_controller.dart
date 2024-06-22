@@ -4,6 +4,7 @@ import 'package:adella_kitchen/app/data/api/api.dart';
 import 'package:adella_kitchen/app/data/models/detail_product.dart';
 import 'package:adella_kitchen/theme/widget/app_widget.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
@@ -19,6 +20,9 @@ class DetailProdukController extends GetxController {
     variants: [],
   ).obs;
   var isLoading = false.obs;
+
+  RxInt quantity = 3.obs;
+  RxInt totalPrice = 0.obs;
 
   @override
   void onInit() {
@@ -43,13 +47,13 @@ class DetailProdukController extends GetxController {
         },
       );
 
-      print("API Response: ${response.body}"); // Log response
-
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
         DetailMenu detailMenu = DetailMenu.fromJson(data['data']);
         productMenu.value = detailMenu;
         print("Product Menu: ${productMenu.value}"); // Log productMenu
+
+        updateTotalPrice();
       } else {
         CustomSnackBar.showError('Error', 'Failed to load menu');
       }
@@ -58,6 +62,23 @@ class DetailProdukController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+  // New methods for cart functionality
+  void addToCart() {
+    quantity.value++;
+    updateTotalPrice();
+  }
+
+  void removeFromCart() {
+    if (quantity.value > 0) {
+      quantity.value--;
+      updateTotalPrice();
+    }
+  }
+
+  void updateTotalPrice() {
+    totalPrice.value = productMenu.value.priceMenu * quantity.value;
   }
 
   String formatRupiah(int harga) {

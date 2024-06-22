@@ -1,9 +1,13 @@
+import 'package:adella_kitchen/app/modules/detail_produk/controllers/detail_produk_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:adella_kitchen/theme/color.dart';
+import 'package:get/get.dart';
 import 'package:input_quantity/input_quantity.dart';
 
 class BottomViewDetailProduk extends StatelessWidget {
-  const BottomViewDetailProduk({super.key});
+  final DetailProdukController controller = Get.find();
+
+  BottomViewDetailProduk({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +39,16 @@ class BottomViewDetailProduk extends StatelessWidget {
                             btnColor: myColor().primaryColor,
                             width: 8),
                         steps: 1,
-                        initVal: 5,
-                        minVal: 1,
-                        onQtyChanged: (value) {}),
+                        initVal: controller.quantity.value.toInt(),
+                        minVal: controller.quantity.value,
+                        onQtyChanged: (value) {
+                          controller.quantity.value = value.toInt();
+                          controller.updateTotalPrice();
+                        }),
                   ),
-                  const Text(
-                    'Minimal pembelian item 5',
-                    style: TextStyle(fontSize: 12),
+                  Text(
+                    'Minimal pembelian item ${controller.quantity.value}',
+                    style: const TextStyle(fontSize: 12),
                   ),
                 ],
               ),
@@ -50,11 +57,12 @@ class BottomViewDetailProduk extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   const Text('Subtotal'),
-                  Text('Rp. 50.000',
+                  Obx(() => Text(
+                      controller.formatRupiah(controller.totalPrice.value),
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
-                          color: myColor().primaryColor)),
+                          color: myColor().primaryColor)))
                 ],
               )
             ],

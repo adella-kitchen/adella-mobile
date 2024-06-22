@@ -118,7 +118,7 @@ class DetailProdukView extends GetView<DetailProdukController> {
                   ],
                 ),
               ),
-              const Positioned(
+              Positioned(
                 bottom: 0,
                 left: 0,
                 right: 0,
