@@ -3,6 +3,7 @@ import 'package:adella_kitchen/app/data/models/detail_product.dart';
 import 'package:adella_kitchen/app/modules/detail_produk/views/bottom_sheet.dart';
 import 'package:adella_kitchen/app/modules/detail_produk/views/dropdrown.dart';
 import 'package:adella_kitchen/theme/color.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/detail_produk_controller.dart';
@@ -36,13 +37,15 @@ class DetailProdukView extends GetView<DetailProdukController> {
                     Stack(
                       children: [
                         Center(
-                          child: Image.network(
-                            UrlApi().getImgMenu(menu.menuImg),
-                            width: double.infinity,
-                            height: 300,
-                            fit: BoxFit.contain,
+                            child: FancyShimmerImage(
+                          imageUrl: UrlApi().getImgMenu(menu.menuImg),
+                          width: double.infinity,
+                          height: 300,
+                          boxFit: BoxFit.contain,
+                          errorWidget: const Center(
+                            child: Text('Error loading image'),
                           ),
-                        ),
+                        )),
                         Positioned(
                           top: 20,
                           left: 12,
