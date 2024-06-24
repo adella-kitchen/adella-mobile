@@ -17,6 +17,8 @@ import '../controllers/home_controller.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 
 class HomeView extends GetView<HomeController> {
+  final DashboardController dashboardController =
+      Get.find<DashboardController>();
   TextEditingController searchController = TextEditingController();
   HomeView({super.key});
 
@@ -55,14 +57,20 @@ class HomeView extends GetView<HomeController> {
                                 fontSize: fontSize().regular,
                                 color: Colors.white),
                           ),
-                          Text(
-                            'Lutfi Hakim',
-                            style: TextStyle(
-                              fontSize: fontSize().medium,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          Obx(() {
+                            if (dashboardController.name.value.isEmpty) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
+                            return Text(
+                              dashboardController.name.value,
+                              style: TextStyle(
+                                fontSize: fontSize().medium,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          })
                         ],
                       ),
                       const Spacer(),
