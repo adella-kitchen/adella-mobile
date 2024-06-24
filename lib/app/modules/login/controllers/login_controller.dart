@@ -57,6 +57,8 @@ class LoginController extends GetxController {
           final nameUser = userData['name'];
 
           print('Token User: $plainTextToken');
+          print('Email : $emailUser');
+          print('Name : $nameUser');
 
           await saveUserData(plainTextToken, idUser, emailUser, nameUser);
         } else {
@@ -100,6 +102,7 @@ class LoginController extends GetxController {
         await storage.delete(key: 'token');
         await storage.delete(key: 'id_user');
         await storage.delete(key: 'email');
+        await storage.delete(key: 'name');
         isLogin.value = false;
         Get.offNamed(Routes.LOGIN);
       } else {

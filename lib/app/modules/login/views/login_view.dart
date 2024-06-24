@@ -59,21 +59,18 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 BtnLogin(
-                  btnText: controller.isLoading.value ? 'Loading....' : 'Login',
+                  btnText: 'Login',
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      print('form valid');
-                      controller.isLoading.value =
-                          true; // Menampilkan loading spinner
+                      controller.isLoading.value = true;
                       await controller.login(
                         controller.emailController.text,
                         controller.passwordController.text,
                       );
                     }
                   },
-                  isLoading: controller
-                      .isLoading.value, // Langsung gunakan controller.isLoading
+                  isLoading: controller.isLoading,
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 30),
