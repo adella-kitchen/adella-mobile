@@ -20,6 +20,16 @@ class RegisterView extends GetView<RegisterController> {
     TextEditingController passController = TextEditingController();
     TextEditingController validPassController = TextEditingController();
 
+    String? confirmPasswordValidator(String? value) {
+      if (value == null || value.isEmpty) {
+        return 'Konfirmasi Password harus diisi';
+      }
+      if (value != passController.text) {
+        return 'Password dan Konfirmasi Password harus sama';
+      }
+      return null;
+    }
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -47,29 +57,28 @@ class RegisterView extends GetView<RegisterController> {
                   controller: nameController,
                 ),
                 TfEmail(controller: emailController),
-                TfPass(
-                  controller: passController,
-                  label: 'Password',
-                  hint: 'Masukkan Password ',
-                ),
-                TfPass(
-                  controller: validPassController,
-                  label: 'Password',
-                  hint: 'Konfirmasi Password ',
-                ),
-                BtnPrimary(
+                TfPassConfirm(
+                    controller: passController,
+                    label: 'Password',
+                    hint: 'Password',
+                    validator: confirmPasswordValidator),
+                TfPassConfirm(
+                    controller: validPassController,
+                    label: 'Konfirmasi Password',
+                    hint: 'Konfirmasi Password',
+                    validator: confirmPasswordValidator),
+                BtnLogin(
                     btnText: 'Daftar Akun',
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
                         print('form valid');
-                        controller.register(
-                            nameController.text,
-                            emailController.text,
-                            passController.text,
-                            validPassController.text);
+                        controller.isLoading.value = true;
+                        controller.register(nameController.text,
+                            emailController.text, passController.text);
                       }
-                    }),
+                    },
+                    isLoading: controller.isLoading),
                 Container(
                   margin: const EdgeInsets.only(top: 100),
                   child: RichText(

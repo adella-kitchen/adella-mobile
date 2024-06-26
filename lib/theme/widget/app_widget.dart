@@ -398,3 +398,87 @@ class CustomSnackBar {
         duration: const Duration(seconds: 2));
   }
 }
+
+class TfPassConfirm extends StatefulWidget {
+  final String label;
+  final String hint;
+  final TextEditingController controller;
+  final void Function()? onTap;
+  final String? Function(String?)? validator; // Add the validator parameter
+
+  const TfPassConfirm({
+    Key? key,
+    required this.controller,
+    required this.label,
+    required this.hint,
+    this.onTap,
+    this.validator, // Initialize the validator parameter
+  }) : super(key: key);
+
+  @override
+  _TfPassConfirmState createState() => _TfPassConfirmState();
+}
+
+class _TfPassConfirmState extends State<TfPassConfirm> {
+  bool _obscureText = true;
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.label,
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        ),
+        SizedBox(
+          height: 80,
+          child: TextFormField(
+            controller: widget.controller,
+            style: const TextStyle(fontSize: 15),
+            obscureText: _obscureText,
+            decoration: InputDecoration(
+              hintText: widget.hint,
+              hintStyle: const TextStyle(color: Colors.grey),
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(
+                Ionicons.lock_closed,
+                color: Colors.grey,
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black),
+              ),
+              suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+                icon: Icon(
+                  _obscureText ? Ionicons.eye_off : Ionicons.eye,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            cursorColor: Colors.black,
+            validator: widget.validator ?? (value) {
+              if (value!.trim().isEmpty) {
+                return 'Password harus diisi';
+              }
+              if (value.length < 8) {
+                return 'Password minimal 8 karakter';
+              }
+              return null;
+            },
+            onTap: widget.onTap,
+          ),
+        ),
+      ],
+    );
+  }
+}
