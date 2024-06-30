@@ -34,6 +34,13 @@ class LoginController extends GetxController {
     printToken();
   }
 
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
+  }
+
   Future<void> login(String email, String password) async {
     isLoading.value = true;
 
